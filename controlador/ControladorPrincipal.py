@@ -47,7 +47,7 @@ def alta():
                 opcSalir = aux
                 if (opcSalir != '0'):
                     VerificationExceptions.hayAlgo(aux)
-                    verde("DNI introducido correctamente")
+                    verde("Nombre introducido correctamente")
                     nombre = aux
                     intentos = 0
             cabeza, intentos, opcSalir = comprobarValoresMasCinco(cabeza, intentos, opcSalir, 1)
@@ -110,12 +110,17 @@ def modificar():
     print()
 
 
-def consultar():
-    print()
+def consultar():  # -------------------------------- Lo he puesto aqui para poder hacer pruebas simplemente
+    mostrarCabezas()
+    cabeza = int(input("Escoge cabeza: ")) - 1
+    mostrarCuerpos(cabeza)
+    cuerpo = int(input("Escoge cuerpo: ")) - 1
+    mostrarPiernas(cabeza, cuerpo)
+    piernas = int(input("Escoge piernas: ")) - 1
+    mostrarPersonaje(cabeza, cuerpo, piernas)
 
 
 def mostrarTodos():
-
     resultado = ConexionBBDD.mostrar()
     for values in resultado:
         print(values)
