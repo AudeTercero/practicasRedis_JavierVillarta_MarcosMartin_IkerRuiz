@@ -12,4 +12,4 @@ class Personaje:
         self.cp = self.cpCalculate(fuerza, inteligencia, vida, destreza)
 
     def cpCalculate(self, fuerza, inteligencia, vida, destreza):
-        return (fuerza + inteligencia + vida + destreza) / 4
+        return (int(fuerza) + int(inteligencia) + int(vida) + int(destreza)) / 4

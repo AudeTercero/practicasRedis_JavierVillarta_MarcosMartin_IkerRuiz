@@ -1,4 +1,7 @@
 from vista.VistaErrores import *
+from modelo.ConexionBBDD import existeNombre
+
+
 class MisExceptions(Exception):
     """
     Clase creada para generar nuestras propias excepciones
@@ -28,8 +31,23 @@ def esNum(num):
     :param num: El numero a validar
     :return:
     """
-    if type(num) != int:
+    num = num.strip()
+    if not num.isdigit():
         raise MisExceptions(msgErrNum())
-def nombreExiste():
-    raise MisExceptions(msgErrNombre())
 
+
+def esRangoCinco(num):
+    num = int(num.strip())
+    if (num < 1 or num > 5):
+        raise MisExceptions(msgErrNumCinco())
+
+
+def esRangoDiez(num):
+    num = int(num.strip())
+    if (num < 1 or num > 10):
+        raise MisExceptions(msgErrNumDiez())
+
+
+def nombreExiste(nombre):
+    if existeNombre(nombre):
+        raise MisExceptions(msgErrNombre())
