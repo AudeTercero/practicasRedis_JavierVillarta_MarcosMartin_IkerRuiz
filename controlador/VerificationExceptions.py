@@ -36,16 +36,13 @@ def esNum(num):
         raise MisExceptions(msgErrNum())
 
 
-def esRangoCinco(num):
+def esRango(num,lim):
     num = int(num.strip())
-    if (num < 1 or num > 5):
+    if (num < 1 or num > lim):
         raise MisExceptions(msgErrNumCinco())
 
 
-def esRangoDiez(num):
-    num = int(num.strip())
-    if (num < 1 or num > 10):
-        raise MisExceptions(msgErrNumDiez())
+
 
 
 def nombreExiste(nombre):

@@ -50,14 +50,15 @@ def alta():
                     verde("Nombre introducido correctamente")
                     nombre = aux
                     intentos = 0
-            cabeza, intentos, opcSalir = comprobarValoresMasCinco(cabeza, intentos, opcSalir, 1)
-            cuerpo, intentos, opcSalir = comprobarValoresMasCinco(cuerpo, intentos, opcSalir, 2)
-            piernas, intentos, opcSalir = comprobarValoresMasCinco(piernas, intentos, opcSalir, 3)
-            color, intentos, opcSalir = comprobarValoresMasCinco(color, intentos, opcSalir, 4)
-            fuerza, intentos, opcSalir = comprobarValoresMasDiez(fuerza, intentos, opcSalir, 5)
-            inteligencia, intentos, opcSalir = comprobarValoresMasDiez(inteligencia, intentos, opcSalir, 6)
-            vida, intentos, opcSalir = comprobarValoresMasDiez(vida, intentos, opcSalir, 7)
-            destreza, intentos, opcSalir = comprobarValoresMasDiez(destreza, intentos, opcSalir, 8)
+
+            cabeza, intentos, opcSalir = pedirYComprobarValores(cabeza, intentos, opcSalir, 1, 5)
+            cuerpo, intentos, opcSalir = pedirYComprobarValores(cuerpo, intentos, opcSalir, 2, 5)
+            piernas, intentos, opcSalir = pedirYComprobarValores(piernas, intentos, opcSalir, 3, 5)
+            color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 4, 5)
+            fuerza, intentos, opcSalir = pedirYComprobarValores(fuerza, intentos, opcSalir, 5, 10)
+            inteligencia, intentos, opcSalir = pedirYComprobarValores(inteligencia, intentos, opcSalir, 6, 10)
+            vida, intentos, opcSalir = pedirYComprobarValores(vida, intentos, opcSalir, 7, 10)
+            destreza, intentos, opcSalir = pedirYComprobarValores(destreza, intentos, opcSalir, 8, 10)
 
             salir = True
             if (opcSalir == '0'):
@@ -76,26 +77,13 @@ def alta():
         amarillo("Se han superado el maximo de errores.")
 
 
-def comprobarValoresMasCinco(value, intentos, opcSalir, num):
+def pedirYComprobarValores(value, intentos, opcSalir, num, limite):
     if (value is None and opcSalir != '0'):
         aux = selectAlta(num)
         opcSalir = aux
         if (opcSalir != '0'):
             VerificationExceptions.esNum(aux)
-            VerificationExceptions.esRangoCinco(aux)
-            verde("Direccion introducida correctamente")
-            value = aux
-            intentos = 0
-    return value, intentos, opcSalir
-
-
-def comprobarValoresMasDiez(value, intentos, opcSalir, num):
-    if (value is None and opcSalir != '0'):
-        aux = selectAlta(num)
-        opcSalir = aux
-        if (opcSalir != '0'):
-            VerificationExceptions.esNum(aux)
-            VerificationExceptions.esRangoDiez(aux)
+            VerificationExceptions.esRango(aux, limite)
             verde("Direccion introducida correctamente")
             value = aux
             intentos = 0
