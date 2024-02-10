@@ -51,14 +51,15 @@ def alta():
                     nombre = aux
                     intentos = 0
 
-            cabeza, intentos, opcSalir = pedirYComprobarValores(cabeza, intentos, opcSalir, 1, 5)
-            cuerpo, intentos, opcSalir = pedirYComprobarValores(cuerpo, intentos, opcSalir, 2, 5)
-            piernas, intentos, opcSalir = pedirYComprobarValores(piernas, intentos, opcSalir, 3, 5)
-            color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 4, 5)
-            fuerza, intentos, opcSalir = pedirYComprobarValores(fuerza, intentos, opcSalir, 5, 10)
-            inteligencia, intentos, opcSalir = pedirYComprobarValores(inteligencia, intentos, opcSalir, 6, 10)
-            vida, intentos, opcSalir = pedirYComprobarValores(vida, intentos, opcSalir, 7, 10)
-            destreza, intentos, opcSalir = pedirYComprobarValores(destreza, intentos, opcSalir, 8, 10)
+
+            if cabeza is None or cuerpo is None or piernas is None:
+                cabeza, cuerpo, piernas = altaApariencia()
+
+            color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
+            fuerza, intentos, opcSalir = pedirYComprobarValores(fuerza, intentos, opcSalir, 2, 10)
+            inteligencia, intentos, opcSalir = pedirYComprobarValores(inteligencia, intentos, opcSalir, 3, 10)
+            vida, intentos, opcSalir = pedirYComprobarValores(vida, intentos, opcSalir, 4, 10)
+            destreza, intentos, opcSalir = pedirYComprobarValores(destreza, intentos, opcSalir, 5, 10)
 
             salir = True
             if (opcSalir == '0'):
@@ -135,7 +136,6 @@ def baja():
         print("Saliendo...")
 
 
-
 def modificar():
     """
         Funcion que permite modificar los campos de un curso
@@ -153,7 +153,7 @@ def modificar():
     fallos = 0
     opcSalir = None
     salir = False
-    #while not salir and opcSalir != '0' and fallos < 5:
+    # while not salir and opcSalir != '0' and fallos < 5:
     #    try:
     #        aux = VistaGeneral.nombreModificar()
     #        opcSalir = aux
@@ -165,8 +165,8 @@ def modificar():
     #    except VerificationExceptions.MisExceptions as err:
     #        fallos += 1
     #        rojo(str(err))
-    #salir = False
-    #while fallos < 5 and not salir and opcSalir != '0':
+    # salir = False
+    # while fallos < 5 and not salir and opcSalir != '0':
     #    opc = VistaGeneral.menuModificar()
     #    if opc == '1':
     #        nuevoNombre = None
@@ -245,7 +245,6 @@ def modificar():
     #        rojo("No hay esa opcion")
 
 
-
 def consultar():  # -------------------------------- Lo he puesto aqui para poder hacer pruebas simplemente
     mostrarCabezas()
     cabeza = int(input("Escoge cabeza: ")) - 1
@@ -264,18 +263,12 @@ def mostrarTodos():
 
 def selectAlta(num):
     if num == 1:
-        return altaCabeza()
-    elif num == 2:
-        return altaCuerpo()
-    elif num == 3:
-        return altaPiernas()
-    elif num == 4:
         return altaColor()
-    elif num == 5:
+    elif num == 2:
         return altaFuerza()
-    elif num == 6:
+    elif num == 3:
         return altaInteligencia()
-    elif num == 7:
+    elif num == 4:
         return altaVida()
-    elif num == 8:
+    elif num == 5:
         return altaDestreza()

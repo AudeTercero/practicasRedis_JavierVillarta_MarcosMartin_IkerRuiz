@@ -1,4 +1,5 @@
 from controlador.Colores import *
+from controlador.VerificationExceptions import esRango
 
 
 def getCabezas():
@@ -140,19 +141,21 @@ def altaNombre():
     return nombre
 
 
-def altaCabeza():
-    opc = input('Escoge la cabeza: ')
-    return opc
+def altaApariencia():
+    mostrarCabezas()
+    cabeza = input("Escoge cabeza: ")
+    esRango(cabeza, 5)
+    mostrarCuerpos(int(cabeza) - 1)
 
+    cuerpo = input("Escoge cuerpo: ")
+    esRango(cuerpo, 5)
+    mostrarPiernas(int(cabeza) - 1, int(cuerpo) - 1)
 
-def altaCuerpo():
-    opc = input('Escoge el cuerpo: ')
-    return opc
+    piernas = input("Escoge piernas: ")
+    esRango(piernas, 5)
+    mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
 
-
-def altaPiernas():
-    opc = input('Escoge las piernas: ')
-    return opc
+    return cabeza, cuerpo, piernas
 
 
 def altaColor():
@@ -192,24 +195,29 @@ def altaDestreza():
 def baja():
     opc = input('Introduce el nombre del personaje que quieras borrar: ')
     return opc
-#INICIO PRINTS/INPUTS MODIFICAR
+
+
+# INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
     opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.')
     return opc
+
+
 def menuModificar():
     opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
-                    "\t[1.Nombre\n"
-                    "\t[2.Cabeza\n"
-                    "\t[3.Cuerpo\n"
-                    "\t[4.Piernas\n"
-                    "\t[5.Color\n"
-                    "\t[6.Fuerza\n"
-                    "\t[7.Inteligencia\n"
-                    "\t[8.Vida\n"
-                    "\t[9.Destreza\n"
-                    "\t[0.Salir\n"
-                    "\t[Opcion: ")
+                "\t[1.Nombre\n"
+                "\t[2.Cabeza\n"
+                "\t[3.Cuerpo\n"
+                "\t[4.Piernas\n"
+                "\t[5.Color\n"
+                "\t[6.Fuerza\n"
+                "\t[7.Inteligencia\n"
+                "\t[8.Vida\n"
+                "\t[9.Destreza\n"
+                "\t[0.Salir\n"
+                "\t[Opcion: ")
     return opc
+
 
 # MENSAJES Y AVISOS
 def saliendo():
@@ -218,5 +226,7 @@ def saliendo():
 
 def errorEntrada():
     rojo("Entrada no valida")
+
+
 def campoCorrecto():
     verde("Campo introducido correctamente")
