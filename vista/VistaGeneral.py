@@ -1,5 +1,5 @@
 from controlador.Colores import *
-from controlador.VerificationExceptions import esRango
+from controlador.VerificationExceptions import esRango, esNum
 from prettytable import PrettyTable
 from colorama import Fore
 
@@ -146,14 +146,17 @@ def altaNombre():
 def altaApariencia():
     mostrarCabezas()
     cabeza = input("Escoge cabeza: ")
+    esNum(cabeza)
     esRango(cabeza, 5)
     mostrarCuerpos(int(cabeza) - 1)
 
     cuerpo = input("Escoge cuerpo: ")
+    esNum(cuerpo)
     esRango(cuerpo, 5)
     mostrarPiernas(int(cabeza) - 1, int(cuerpo) - 1)
 
     piernas = input("Escoge piernas: ")
+    esNum(piernas)
     esRango(piernas, 5)
     mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
 
@@ -214,7 +217,7 @@ def buscar():
 def mostrarPj(pj):
     colorPj(int(pj.color))
     mostrarPersonaje(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1)
-    print(Fore.RESET)
+    print(Fore.RESET,end="")
     x = PrettyTable()
     x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
     x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
