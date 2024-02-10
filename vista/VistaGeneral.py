@@ -2,38 +2,8 @@ from controlador.Colores import *
 from controlador.VerificationExceptions import esRango, esNum
 from prettytable import PrettyTable
 from colorama import Fore
+from modelo.Personaje import getCabezas, getCuerpos, getPiernas
 
-
-def getCabezas():
-    """
-    En esta funcion se guardan todas las cabezas disponibles para los personajes.
-    Se trata de una lista para cada tipo de cabeza, que a su vez contiene una lista
-    para cada linea de dibujado. De esta forma se pueden mostrar varios personajes
-    a la vez.
-    :return: Lista con el contenido
-    """
-    return [["     [#]    ", "    _|||_   "], ["            ", "     (-)    "]
-        , ["      _     ", "    _/v\\_   "],
-            ["     ___    ", "    /0-0\\   "], ["     ___    ", "   _/<_>\\_  "]]
-
-
-def getCuerpos():
-    """
-    En esta funcion se guardan todas los cuerpos disponibles para los personajes.
-    :return:
-    """
-    return [["  <[     ]> ", "  <[=====]> ", "  <[_____]> "], [" \\=\\  Y  /=/", "    \\ | /   ", "    |___|   "],
-            ["    \\   /   ", " d==|   |==b", "    |___|   "], ["     ) (    ", "   /(   )\\  ", "   \\ )_( /  "],
-            ["   _/   \\_  ", "  /=======\\ ", " /_________\\"]]
-
-
-def getPiernas():
-    """
-    En esta funcion se guardan todas las piernas disponibles para los personajes.
-    :return:
-    """
-    return [["    |   |   ", "    l   l   "], ["   //   \\\  ", " _//     \\\_"], ["    // \\\   ", "  _//   \\\_ "],
-            ["    || ||   ", "    WW WW   "], ["    (_0_)   ", "            "]]
 
 
 def mostrarCabezas():
@@ -113,6 +83,16 @@ def mostrarPiernas(cabeza, cuerpo):
               + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
     verde(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
               + getPiernas()[3][1] + "  " + getPiernas()[4][1] + "  "))
+
+
+def mostrarPersonaje(cabeza, cuerpo, piernas):
+    print(str(getCabezas()[cabeza][0]))
+    print(str(getCabezas()[cabeza][1]))
+    print(str(getCuerpos()[cuerpo][0]))
+    print(str(getCuerpos()[cuerpo][1]))
+    print(str(getCuerpos()[cuerpo][2]))
+    print(str(getPiernas()[piernas][0]))
+    print(str(getPiernas()[piernas][1]))
 
 
 def mostrarPersonaje(cabeza, cuerpo, piernas):
