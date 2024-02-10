@@ -51,7 +51,6 @@ def alta():
                     nombre = aux
                     intentos = 0
 
-
             if cabeza is None or cuerpo is None or piernas is None:
                 cabeza, cuerpo, piernas = altaApariencia()
 
@@ -70,7 +69,7 @@ def alta():
 
     if (intentos < 5 and opcSalir != '0'):
         pj = Personaje(nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza)
-        ConexionBBDD.alta(pj)
+        ConexionBBDD.altaBBDD(pj)
     elif (opcSalir == '0'):
         print("Saliendo")
     else:
@@ -122,7 +121,7 @@ def baja():
             op = input("Seguro que quiere dar de baja al curso?[S/N]: ").lower()
 
             if op == "s":
-                ConexionBBDD.baja(nombre)
+                ConexionBBDD.bajaBBDD(nombre)
                 salir = True
             elif op == "n":
                 salir = True
@@ -150,95 +149,105 @@ def modificar():
     inteligencia = None
     vida = None
     destreza = None
+    pj = None
     fallos = 0
     opcSalir = None
     salir = False
     while not salir and opcSalir != '0' and fallos < 5:
-       try:
-           aux = VistaGeneral.nombreModificar()
-           opcSalir = aux
-           if opcSalir != '0':
-               VerificationExceptions.hayAlgo(aux)
-               VerificationExceptions.nombreNoExiste(aux)
-               nombre = aux
-               salir = True
-       except VerificationExceptions.MisExceptions as err:
-           fallos += 1
-           rojo(str(err))
+        try:
+            aux = VistaGeneral.nombreModificar()
+            opcSalir = aux
+            if opcSalir != '0':
+                VerificationExceptions.hayAlgo(aux)
+                VerificationExceptions.nombreNoExiste(aux)
+                nombre = aux
+                salir = True
+                pj = ConexionBBDD.buscarBBDD(nombre)
+                ConexionBBDD.bajaBBDD(pj.nombre)
+        except VerificationExceptions.MisExceptions as err:
+            fallos += 1
+            rojo(str(err))
     salir = False
     while fallos < 5 and not salir and opcSalir != '0':
-       opc = VistaGeneral.menuModificar()
-       if opc == '1':
-           nuevoNombre = None
-           fallos = 0
-           opcSalir = None
-           salirNombre = False
-           while not salirNombre and fallos < 5 and opcSalir != '0':
-               try:
-                   aux = altaNombre()
-                   opcSalir = aux
-                   if opcSalir != '0':
-                       VerificationExceptions.hayAlgo(aux)
-                       VerificationExceptions.nombreExiste(aux)
-                       nuevoNombre = aux
-                       salirNombre = True
-                       verde("Nombre correcto")
-               except VerificationExceptions.MisExceptions as err:
-                   rojo(str(err))
-                   fallos += 1
-           if fallos < 5 and opcSalir != '0':
-               op = None
-               while not salir and op is None:
-                   op = input("Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
-                   if op == "s":
-                       ConsultasCurso.consModificar(nombre, 'nombre', nuevoNombre)
-                       verde("Modificacion realizada correctamente")
-                       nombre = nuevoNombre
-                   elif op == "n":
-                       salir = True
-                       print("Saliendo sin guardar...")
-                   else:
-                       rojo("Entrada no valida.")
-           elif fallos == 5:
-               amarillo("No puedes fallar mas de 5 veces")
-           else:
-               print("Saliendo...")
-       elif opc == '2':
-           nuevaDescripcion = None
-           fallos = 0
-           opcSalir = None
-           while fallos < 5 and nuevaDescripcion is None and opcSalir != '0':
-               try:
-                   aux = input('Escriba la nueva descripcion o pulse 0 para salir:')
-                   opcSalir = aux
-                   if opcSalir != '0':
-                       VerificationExceptions.hayAlgo(aux)
-                       nuevaDescripcion = aux
-                       verde("Descripcion Correcta")
-               except VerificationExceptions.MisExceptions as err:
-                   rojo(str(err))
-                   fallos += 1
-           if fallos < 5 and opcSalir != '0':
-               op = None
-               while not salir and op is None:
-                   op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
-                   if op == "s":
-                       ConsultasCurso.consModificar(nombre, 'descripcion', nuevaDescripcion)
-                       print("Modificacion realizada correctamente")
-                   elif op == "n":
-                       salir = True
-                       print("Saliendo sin guardar...")
-                   else:
-                       rojo("Entrada no valida.")
-           elif fallos == 5:
-               amarillo("No puedes fallar mas de 5 veces")
-           else:
-               print("Saliendo...")
-       elif opc == '0':
-           print("Saliendo...")
-           salir = True
-       else:
-           rojo("No hay esa opcion")
+        opc = VistaGeneral.menuModificar()
+
+        # Modificacion del nombre
+        if opc == '1':
+            nuevoNombre = None
+            fallos = 0
+            opcSalir = None
+            salirNombre = False
+            while not salirNombre and fallos < 5 and opcSalir != '0':
+                try:
+                    aux = altaNombre()
+                    opcSalir = aux
+                    if opcSalir != '0':
+                        VerificationExceptions.hayAlgo(aux)
+                        VerificationExceptions.nombreExiste(aux)
+                        nuevoNombre = aux
+                        salirNombre = True
+                        verde("Nombre correcto")
+                except VerificationExceptions.MisExceptions as err:
+                    rojo(str(err))
+                    fallos += 1
+            if fallos < 5 and opcSalir != '0':
+                op = None
+                while not salir and op is None:
+                    op = input("Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
+                    if op == "s":
+                        pj.nombre = nuevoNombre
+                        verde("Modificacion realizada correctamente")
+                    elif op == "n":
+                        salir = True
+                        print("Saliendo sin guardar...")
+                    else:
+                        rojo("Entrada no valida.")
+            elif fallos == 5:
+                amarillo("No puedes fallar mas de 5 veces")
+            else:
+                print("Saliendo...")
+
+        # Modificacion del cuerpo
+        elif opc == '2':
+            nCabeza = None
+            nCuerpo = None
+            nPiernas = None
+            fallos = 0
+            opcSalir = None
+            while fallos < 5 and nuevaDescripcion is None and opcSalir != '0':
+                try:
+                    nCabeza,nCuerpo,nPiernas = altaApariencia()
+
+                    if nCabeza == '0' or nCuerpo == '0' or nPiernas == '0':
+                        opcSalir = '0'
+                    else:
+                        verde("Descripcion Correcta")
+                except VerificationExceptions.MisExceptions as err:
+                    rojo(str(err))
+                    fallos += 1
+            if fallos < 5 and opcSalir != '0':
+                op = None
+                while not salir and op is None:
+                    op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
+                    if op == "s":
+                        ConsultasCurso.consModificar(nombre, 'descripcion', nuevaDescripcion)
+                        print("Modificacion realizada correctamente")
+                    elif op == "n":
+                        salir = True
+                        print("Saliendo sin guardar...")
+                    else:
+                        rojo("Entrada no valida.")
+            elif fallos == 5:
+                amarillo("No puedes fallar mas de 5 veces")
+            else:
+                print("Saliendo...")
+        elif opc == '0':
+            print("Saliendo...")
+            salir = True
+        else:
+            rojo("No hay esa opcion")
+    if pj is not None:
+        ConexionBBDD.altaBBDD(pj)
 
 
 def consultar():
@@ -257,7 +266,7 @@ def consultar():
             entrar = False
             rojo(str(err))
         if (fallos < 5 and opcSalir != '0' and entrar):
-            pj = ConexionBBDD.buscar(nombre)
+            pj = ConexionBBDD.buscarBBDD(nombre)
             VistaGeneral.mostrarPj(pj)
 
 
@@ -268,7 +277,7 @@ def consultar():
 
 
 def mostrarTodos():
-    personajes = ConexionBBDD.mostrar()
+    personajes = ConexionBBDD.mostrarBBDD()
     VistaGeneral.mostrarTodos(personajes)
 
 

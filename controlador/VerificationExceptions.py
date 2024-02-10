@@ -1,5 +1,5 @@
 from vista.VistaErrores import *
-from modelo.ConexionBBDD import existeNombre
+from modelo.ConexionBBDD import existeNombreBBDD
 
 
 class MisExceptions(Exception):
@@ -43,10 +43,10 @@ def esRango(num, lim):
 
 
 def nombreExiste(nombre):
-    if existeNombre(nombre):
+    if existeNombreBBDD(nombre):
         raise MisExceptions(msgErrNombre())
 
 
 def nombreNoExiste(nombre):
-    if not existeNombre(nombre):
+    if not existeNombreBBDD(nombre):
         raise MisExceptions(msgErrNombreNoEncontrado())
