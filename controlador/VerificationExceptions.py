@@ -37,16 +37,33 @@ def esNum(num):
 
 
 def esRango(num, lim):
+    """
+    Verifica que el numero introducido este dentro
+    de un rango especifico
+    :param num: El numero a validar
+    :param lim: El rango en el que debe encontrase el numero
+    :return:
+    """
     num = int(num.strip())
     if (num < 1 or num > lim):
         raise MisExceptions(msgErrNumCinco())
 
 
 def nombreExiste(nombre):
+    """
+    Verifica que el nombre que recibe exista en la base de datos
+    :param nombre: El nombre a comprobar
+    :return:
+    """
     if existeNombre(nombre):
         raise MisExceptions(msgErrNombre())
 
 
 def nombreNoExiste(nombre):
+    """
+    Verifica que el nombre que recibe no exista en la base de datos
+    :param nombre: El nombre a comprobar
+    :return:
+    """
     if not existeNombre(nombre):
         raise MisExceptions(msgErrNombreNoEncontrado())
