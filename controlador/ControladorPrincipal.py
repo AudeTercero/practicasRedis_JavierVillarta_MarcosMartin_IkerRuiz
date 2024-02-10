@@ -245,20 +245,35 @@ def modificar():
     #        rojo("No hay esa opcion")
 
 
-def consultar():  # -------------------------------- Lo he puesto aqui para poder hacer pruebas simplemente
-    mostrarCabezas()
-    cabeza = int(input("Escoge cabeza: ")) - 1
-    mostrarCuerpos(cabeza)
-    cuerpo = int(input("Escoge cuerpo: ")) - 1
-    mostrarPiernas(cabeza, cuerpo)
-    piernas = int(input("Escoge piernas: ")) - 1
-    mostrarPersonaje(cabeza, cuerpo, piernas)
+def consultar():
+    nombre = None
+    opcSalir = None
+    fallos = 0
+    while (opcSalir != '0' and fallos < 5):
+        entrar = True
+        try:
+            nombre = VistaGeneral.buscar()
+            opcSalir = nombre
+            if (opcSalir != '0'):
+                VerificationExceptions.nombreNoExiste(nombre)
+        except VerificationExceptions.MisExceptions as err:
+            fallos += 1
+            entrar = False
+            rojo(str(err))
+        if (fallos < 5 and opcSalir != '0' and entrar):
+            pj = ConexionBBDD.buscar(nombre)
+            VistaGeneral.mostrarPj(pj)
+
+
+        elif (fallos == 5):
+            amarillo("Has superado el maximos de fallos permitidos que son 5")
+        elif (opcSalir == '0'):
+            print("Saliendo...")
 
 
 def mostrarTodos():
     personajes = ConexionBBDD.mostrar()
-    for pj in personajes:
-        print(pj.nombre)
+    VistaGeneral.mostrarTodos(personajes)
 
 
 def selectAlta(num):

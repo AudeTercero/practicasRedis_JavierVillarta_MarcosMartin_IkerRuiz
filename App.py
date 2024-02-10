@@ -1,3 +1,3 @@
-from controlador.ControladorPrincipal import menu
+from controlador.ControladorPrincipal import menu, consultar
 
 menu()

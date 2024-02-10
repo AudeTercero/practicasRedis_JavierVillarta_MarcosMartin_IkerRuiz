@@ -24,3 +24,5 @@ def morado(msg):
     print(Fore.MAGENTA + msg + Fore.RESET)
 
 
+def gris(msg):
+    print(Fore.LIGHTBLACK_EX + msg + Fore.RESET)

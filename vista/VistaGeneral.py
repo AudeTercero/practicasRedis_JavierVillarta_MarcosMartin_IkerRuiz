@@ -1,5 +1,7 @@
 from controlador.Colores import *
 from controlador.VerificationExceptions import esRango
+from prettytable import PrettyTable
+from colorama import Fore
 
 
 def getCabezas():
@@ -203,6 +205,30 @@ def nombreModificar():
     return opc
 
 
+# INICIO PRINTS/INPUTS BUSCAR
+def buscar():
+    opc = input('Introduce el nombre del personaje que quieras buscar: ')
+    return opc
+
+
+def mostrarPj(pj):
+    colorPj(int(pj.color))
+    mostrarPersonaje(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1)
+    print(Fore.RESET)
+    x = PrettyTable()
+    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
+    x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
+    gris(str(x))
+
+
+# INICIO PRINTS MOSTRAR TODOS
+def mostrarTodos(personajes):
+    x = PrettyTable()
+    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
+    for pj in personajes:
+        x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
+    print()
+    azul(str(x))
 def menuModificar():
     opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
                 "\t[1.Nombre\n"
@@ -230,3 +256,21 @@ def errorEntrada():
 
 def campoCorrecto():
     verde("Campo introducido correctamente")
+
+
+def colorPj(num):
+    if num == 1:
+        print(Fore.RED)
+        return "Rojo"
+    elif num == 2:
+        print(Fore.LIGHTYELLOW_EX)
+        return "Amarillo"
+    elif num == 3:
+        print(Fore.GREEN)
+        return "Verde"
+    elif num == 4:
+        print(Fore.CYAN)
+        return "Azul"
+    elif num == 5:
+        print(Fore.MAGENTA)
+        return "Morado"
