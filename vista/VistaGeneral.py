@@ -208,30 +208,6 @@ def nombreModificar():
     return opc
 
 
-# INICIO PRINTS/INPUTS BUSCAR
-def buscar():
-    opc = input('Introduce el nombre del personaje que quieras buscar: ')
-    return opc
-
-
-def mostrarPj(pj):
-    colorPj(int(pj.color))
-    mostrarPersonaje(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1)
-    print(Fore.RESET,end="")
-    x = PrettyTable()
-    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
-    x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
-    gris(str(x))
-
-
-# INICIO PRINTS MOSTRAR TODOS
-def mostrarTodos(personajes):
-    x = PrettyTable()
-    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
-    for pj in personajes:
-        x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
-    print()
-    azul(str(x))
 def menuModificar():
     opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
                 "\t[1.Nombre\n"
@@ -246,6 +222,32 @@ def menuModificar():
                 "\t[0.Salir\n"
                 "\t[Opcion: ")
     return opc
+
+
+# INICIO PRINTS/INPUTS BUSCAR
+def buscar():
+    opc = input('Introduce el nombre del personaje que quieras buscar: ')
+    return opc
+
+
+def mostrarPj(pj):
+    colorPj(int(pj.color))
+    mostrarPersonaje(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1)
+    print(Fore.RESET, end="")
+    x = PrettyTable()
+    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
+    x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
+    gris(str(x))
+
+
+# INICIO PRINTS MOSTRAR TODOS
+def mostrarTodos(personajes):
+    x = PrettyTable()
+    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
+    for pj in personajes:
+        x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
+    print()
+    azul(str(x))
 
 
 # MENSAJES Y AVISOS
