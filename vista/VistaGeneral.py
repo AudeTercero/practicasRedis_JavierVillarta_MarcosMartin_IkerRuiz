@@ -181,15 +181,13 @@ def nombreModificar():
 
 def menuModificar():
     opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
-                "\t[1.Nombre\n"
-                "\t[2.Cabeza\n"
-                "\t[3.Cuerpo\n"
-                "\t[4.Piernas\n"
-                "\t[5.Color\n"
-                "\t[6.Fuerza\n"
-                "\t[7.Inteligencia\n"
-                "\t[8.Vida\n"
-                "\t[9.Destreza\n"
+                "\t[1.Apariencia\n"
+                "\t[2.Piernas\n"
+                "\t[3.Color\n"
+                "\t[4.Fuerza\n"
+                "\t[5.Inteligencia\n"
+                "\t[6.Vida\n"
+                "\t[7.Destreza\n"
                 "\t[0.Salir\n"
                 "\t[Opcion: ")
     return opc
@@ -202,7 +200,11 @@ def buscar():
 
 
 def mostrarPj(pj):
-    # mostrarPersonajeBonito(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1, int(pj.color))
+
+    print("\n")
+    print(Style.BRIGHT, end="")
+
+
     cabeza = int(pj.cabeza) - 1
     cuerpo = int(pj.cuerpo) - 1
     piernas = int(pj.piernas) - 1
@@ -213,7 +215,7 @@ def mostrarPj(pj):
     print(getCabezas()[cabeza][0], end="")
     print(Fore.RESET, end="")
     print("   ║",end="")
-    mostrarNombre(pj.nombre)
+    mostrarNombre(pj.nombre,pj.color)
     print("║")
     print("║  ", end="")
     colorPj(pj.color)
@@ -252,6 +254,8 @@ def mostrarPj(pj):
     barraProgreso(int(pj.cp), "MEDIA   ")
     print("╚═════════════════╩══════════════════════╝")
 
+    print(Style.RESET_ALL)
+
     '''x = PrettyTable()
     x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
     x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
@@ -267,7 +271,8 @@ def barraProgreso(puntos, nombre):
     print(f"] {nombre}║")
 
 
-def mostrarNombre(nombre):
+def mostrarNombre(nombre, color):
+    colorPj(color)
     disIzq = math.floor((22 - len(nombre)) / 2)
     disDer = math.ceil((22 - len(nombre)) / 2)
     while disIzq > 0:
@@ -277,18 +282,79 @@ def mostrarNombre(nombre):
     while disDer > 0:
         print(" ", end="")
         disDer -= 1
+    print(Fore.RESET, end="")
 
-# def mostrarPersonajeBonito(cabeza, cuerpo, pierna, color):
+
+def mostrarTodos(personajes):
+    print("\n")
+    print(Style.BRIGHT, end="")
+    cont = 0
+    for pj in personajes:
+        cont += 1
+
+        cabeza = int(pj.cabeza) - 1
+        cuerpo = int(pj.cuerpo) - 1
+        piernas = int(pj.piernas) - 1
+
+        if cont == 1:
+            print("╔═════════════════╦══════════════════════╗")
+        else:
+            print("╠═════════════════╬══════════════════════╣")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getCabezas()[cabeza][0], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        mostrarNombre(pj.nombre, pj.color)
+        print("║")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getCabezas()[cabeza][1], end="")
+        print(Fore.RESET, end="")
+        print("   ╠══════════════════════╣")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getCuerpos()[cuerpo][0], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        barraProgreso(int(pj.fuerza), "FUERZA  ")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getCuerpos()[cuerpo][1], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        barraProgreso(int(pj.inteligencia), "INTELEC.")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getCuerpos()[cuerpo][2], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        barraProgreso(int(pj.vida), "VIDA    ")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getPiernas()[piernas][0], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        barraProgreso(int(pj.destreza), "DESTR.  ")
+        print("║  ", end="")
+        colorPj(pj.color)
+        print(getPiernas()[piernas][1], end="")
+        print(Fore.RESET, end="")
+        print("   ║", end="")
+        barraProgreso(int(pj.cp), "MEDIA   ")
+        if cont == len(personajes):
+            print("╚═════════════════╩══════════════════════╝")
+    print(Style.RESET_ALL)
 
 
 # INICIO PRINTS MOSTRAR TODOS
-def mostrarTodos(personajes):
+'''def mostrarTodos(personajes):
     x = PrettyTable()
     x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
     for pj in personajes:
         x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
     print()
-    azul(str(x))
+    azul(str(x))'''
 
 
 # MENSAJES Y AVISOS
@@ -308,16 +374,11 @@ def colorPj(numString):
     num = int(numString)
     if num == 1:
         print(Fore.RED, end="")
-        return "Rojo"
     elif num == 2:
         print(Fore.LIGHTYELLOW_EX, end="")
-        return "Amarillo"
     elif num == 3:
         print(Fore.GREEN, end="")
-        return "Verde"
     elif num == 4:
         print(Fore.CYAN, end="")
-        return "Azul"
     elif num == 5:
         print(Fore.MAGENTA, end="")
-        return "Morado"

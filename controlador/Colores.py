@@ -6,7 +6,10 @@ def rojo(msg):
     Funcion que colorea de rojo el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
     """
-    print(Fore.RED + msg + Fore.RESET)
+    print(Style.BRIGHT, end="")
+    print(Fore.LIGHTRED_EX + msg + Fore.RESET)
+    print(Style.RESET_ALL)
+
 
 
 def amarillo(msg):
@@ -14,7 +17,10 @@ def amarillo(msg):
     Funcion que colorea de amarillo el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
     """
+    print(Style.BRIGHT, end="")
     print(Fore.LIGHTYELLOW_EX + msg + Fore.RESET)
+    print(Style.RESET_ALL)
+
 
 
 def azul(msg):
@@ -42,7 +48,10 @@ def morado(msg):
     Funcion que colorea de morado el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
     """
+    print(Style.BRIGHT, end="")
     print(Fore.MAGENTA + msg + Fore.RESET)
+    print(Style.RESET_ALL)
+
 
 
 def gris(msg):
@@ -50,4 +59,7 @@ def gris(msg):
     Funcion que colorea de gris el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
     """
+    print(Style.BRIGHT, end="")
     print(Fore.LIGHTBLACK_EX + msg + Fore.RESET)
+    print(Style.RESET_ALL)
+
