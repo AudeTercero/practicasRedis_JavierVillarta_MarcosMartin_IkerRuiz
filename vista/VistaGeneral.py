@@ -192,7 +192,23 @@ def altaDestreza():
 def baja():
     opc = input('Introduce el nombre del personaje que quieras borrar: ')
     return opc
-
+def nombreModificar():
+    opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.')
+    return opc
+def menuModificar():
+    opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
+                    "\t[1.Nombre\n"
+                    "\t[2.Cabeza\n"
+                    "\t[3.Cuerpo\n"
+                    "\t[4.Piernas\n"
+                    "\t[5.Color\n"
+                    "\t[6.Fuerza\n"
+                    "\t[7.Inteligencia\n"
+                    "\t[8.Vida\n"
+                    "\t[9.Destreza\n"
+                    "\t[0.Salir\n"
+                    "\t[Opcion: ")
+    return opc
 
 def saliendo():
     print("Saliendo...")

@@ -1,13 +1,16 @@
 import redis
 
+from modelo.Personaje import Personaje
+
 
 def connect():
     return redis.Redis(host='localhost', port=6379, db=0)
 
 
-def alta(nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza, cp):
+def alta(pj):
     con = connect()
-    con.set(nombre, f'{nombre},{cabeza},{cuerpo},{piernas},{color},{fuerza},{inteligencia},{vida},{destreza},{cp}')
+    con.set(pj.nombre,
+            f'{pj.nombre},{pj.cabeza},{pj.cuerpo},{pj.piernas},{pj.color},{pj.fuerza},{pj.inteligencia},{pj.vida},{pj.destreza}')
 
 
 def baja(nombre):
@@ -17,13 +20,21 @@ def baja(nombre):
 
 def buscar(nombre):
     con = connect()
-    return con.get(nombre)
+    valores = con.get(nombre).decode('utf-8').split(',')
+    return Personaje(nombre=valores[0], cabeza=valores[1], cuerpo=valores[2], piernas=valores[3], color=valores[4],
+                     fuerza=valores[5], inteligencia=valores[6], vida=valores[7], destreza=valores[8])
 
 
 def mostrar():
     con = connect()
     keys = con.keys('*')
-    return con.mget(keys)
+    personajes = []
+    for key in keys:
+        valores = con.get(key).decode('utf-8').split(',')
+        personajes.append(
+            Personaje(nombre=valores[0], cabeza=valores[1], cuerpo=valores[2], piernas=valores[3], color=valores[4],
+                      fuerza=valores[5], inteligencia=valores[6], vida=valores[7], destreza=valores[8]))
+    return personajes
 
 
 def existeNombre(nombre):

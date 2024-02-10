@@ -9,7 +9,8 @@ def msgErrNum():
 def msgErrNombre():
     return 'Ese nombre ya existe.'
 
-
+def msgErrNombreNoEncontrado():
+    return 'Nombre de personaje no encontrado.'
 def msgErrNumDiez():
     return 'Debe introducir un numero del 1 al 10.'
 
