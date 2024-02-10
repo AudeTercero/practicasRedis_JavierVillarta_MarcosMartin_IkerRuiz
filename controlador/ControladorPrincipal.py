@@ -216,7 +216,7 @@ def modificar():
             opcSalir = None
             while fallos < 5 and (nCabeza is None or nCuerpo is None or nPiernas is None) and opcSalir != '0':
                 try:
-                    nCabeza,nCuerpo,nPiernas = altaApariencia()
+                    nCabeza, nCuerpo, nPiernas = altaApariencia()
                     if nCabeza == '0' or nCuerpo == '0' or nPiernas == '0':
                         opcSalir = '0'
                     else:
@@ -242,14 +242,61 @@ def modificar():
                 amarillo("No puedes fallar mas de 5 veces")
             else:
                 print("Saliendo...")
+
+        # Modificacion del color
+        elif opc == '3':
+            salir = modificarCampo(pj, salir, 1, 5)
+        elif opc == '4':
+            salir = modificarCampo(pj, salir, 2, 10)
+        elif opc == '5':
+            salir = modificarCampo(pj, salir, 3, 10)
+        elif opc == '6':
+            salir = modificarCampo(pj, salir, 4, 10)
+        elif opc == '7':
+            salir = modificarCampo(pj, salir, 5, 10)
         elif opc == '0':
             print("Saliendo...")
             salir = True
         else:
             rojo("No hay esa opcion")
+
     if pj is not None:
         ConexionBBDD.bajaBBDD(pj.nombre)
         ConexionBBDD.altaBBDD(pj)
+
+
+def modificarCampo(pj, salir, campo, lim):
+    nColor = None
+    fallos = 0
+    opcSalir = None
+    while fallos < 5 and nColor is None and opcSalir != '0':
+        try:
+            nColor = selectAlta(campo)
+            VerificationExceptions.esRango(nColor, lim)
+            if nColor == '0':
+                opcSalir = '0'
+            else:
+                verde("Descripcion Correcta")
+        except VerificationExceptions.MisExceptions as err:
+            rojo(str(err))
+            fallos += 1
+    if fallos < 5 and opcSalir != '0':
+        op = None
+        while not salir and op is None:
+            op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
+            if op == "s":
+                pj.color = nColor
+                print("Modificacion realizada correctamente")
+            elif op == "n":
+                salir = True
+                print("Saliendo sin guardar...")
+            else:
+                rojo("Entrada no valida.")
+    elif fallos == 5:
+        amarillo("No puedes fallar mas de 5 veces")
+    else:
+        print("Saliendo...")
+    return fallos, opcSalir, salir
 
 
 def consultar():
