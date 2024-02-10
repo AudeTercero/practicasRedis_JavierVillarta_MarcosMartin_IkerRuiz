@@ -1,9 +1,10 @@
+import math
+
 from controlador.Colores import *
 from controlador.VerificationExceptions import esRango, esNum
 from prettytable import PrettyTable
 from colorama import Fore
 from modelo.Personaje import getCabezas, getCuerpos, getPiernas
-
 
 
 def mostrarCabezas():
@@ -83,16 +84,6 @@ def mostrarPiernas(cabeza, cuerpo):
               + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
     verde(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
               + getPiernas()[3][1] + "  " + getPiernas()[4][1] + "  "))
-
-
-def mostrarPersonaje(cabeza, cuerpo, piernas):
-    print(str(getCabezas()[cabeza][0]))
-    print(str(getCabezas()[cabeza][1]))
-    print(str(getCuerpos()[cuerpo][0]))
-    print(str(getCuerpos()[cuerpo][1]))
-    print(str(getCuerpos()[cuerpo][2]))
-    print(str(getPiernas()[piernas][0]))
-    print(str(getPiernas()[piernas][1]))
 
 
 def mostrarPersonaje(cabeza, cuerpo, piernas):
@@ -211,13 +202,83 @@ def buscar():
 
 
 def mostrarPj(pj):
-    colorPj(int(pj.color))
-    mostrarPersonaje(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1)
+    # mostrarPersonajeBonito(int(pj.cabeza) - 1, int(pj.cuerpo) - 1, int(pj.piernas) - 1, int(pj.color))
+    cabeza = int(pj.cabeza) - 1
+    cuerpo = int(pj.cuerpo) - 1
+    piernas = int(pj.piernas) - 1
+
+    print("╔═════════════════╦══════════════════════╗")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getCabezas()[cabeza][0], end="")
     print(Fore.RESET, end="")
-    x = PrettyTable()
+    print("   ║",end="")
+    mostrarNombre(pj.nombre)
+    print("║")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getCabezas()[cabeza][1], end="")
+    print(Fore.RESET, end="")
+    print("   ╠══════════════════════╣")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][0], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.fuerza), "FUERZA  ")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][1], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.inteligencia), "INTELEC.")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][2], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.vida), "VIDA    ")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getPiernas()[piernas][0], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.destreza), "DESTR.  ")
+    print("║  ", end="")
+    colorPj(pj.color)
+    print(getPiernas()[piernas][1], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.cp), "MEDIA   ")
+    print("╚═════════════════╩══════════════════════╝")
+
+    '''x = PrettyTable()
     x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
     x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
-    gris(str(x))
+    gris(str(x))'''
+
+
+def barraProgreso(puntos, nombre):
+    print(" [", end="")
+    for i in range(puntos):
+        print("■", end="")
+    for i in range(10 - puntos):
+        print(" ", end="")
+    print(f"] {nombre}║")
+
+
+def mostrarNombre(nombre):
+    disIzq = math.floor((22 - len(nombre)) / 2)
+    disDer = math.ceil((22 - len(nombre)) / 2)
+    while disIzq > 0:
+        print(" ", end="")
+        disIzq -= 1
+    print(nombre, end="")
+    while disDer > 0:
+        print(" ", end="")
+        disDer -= 1
+
+# def mostrarPersonajeBonito(cabeza, cuerpo, pierna, color):
 
 
 # INICIO PRINTS MOSTRAR TODOS
@@ -243,19 +304,20 @@ def campoCorrecto():
     verde("Campo introducido correctamente")
 
 
-def colorPj(num):
+def colorPj(numString):
+    num = int(numString)
     if num == 1:
-        print(Fore.RED)
+        print(Fore.RED, end="")
         return "Rojo"
     elif num == 2:
-        print(Fore.LIGHTYELLOW_EX)
+        print(Fore.LIGHTYELLOW_EX, end="")
         return "Amarillo"
     elif num == 3:
-        print(Fore.GREEN)
+        print(Fore.GREEN, end="")
         return "Verde"
     elif num == 4:
-        print(Fore.CYAN)
+        print(Fore.CYAN, end="")
         return "Azul"
     elif num == 5:
-        print(Fore.MAGENTA)
+        print(Fore.MAGENTA, end="")
         return "Morado"
