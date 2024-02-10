@@ -192,6 +192,7 @@ def altaDestreza():
 def baja():
     opc = input('Introduce el nombre del personaje que quieras borrar: ')
     return opc
+#INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
     opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.')
     return opc
@@ -210,9 +211,12 @@ def menuModificar():
                     "\t[Opcion: ")
     return opc
 
+# MENSAJES Y AVISOS
 def saliendo():
     print("Saliendo...")
 
 
 def errorEntrada():
     rojo("Entrada no valida")
+def campoCorrecto():
+    verde("Campo introducido correctamente")

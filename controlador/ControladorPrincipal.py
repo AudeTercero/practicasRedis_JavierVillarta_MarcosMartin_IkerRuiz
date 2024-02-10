@@ -87,7 +87,7 @@ def pedirYComprobarValores(value, intentos, opcSalir, num, limite):
         if (opcSalir != '0'):
             VerificationExceptions.esNum(aux)
             VerificationExceptions.esRango(aux, limite)
-            verde("Direccion introducida correctamente")
+            campoCorrecto()
             value = aux
             intentos = 0
     return value, intentos, opcSalir
