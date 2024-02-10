@@ -1,5 +1,22 @@
 class Personaje:
+    """
+    Clase que representa a un personaje dentro de la aplicacion
+    """
     def __init__(self, nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza):
+        """
+        Constructor de la clase Personaje.
+
+        Args:
+            nombre (str): Nombre del personaje.
+            cabeza (str): Descripcion de la cabeza del personaje.
+            cuerpo (str): Descripcion del cuerpo del personaje.
+            piernas (str): Descripcion de las piernas del personaje.
+            color (str): Color del personaje.
+            fuerza (int): Valor de la fuerza del personaje.
+            inteligencia (int): Valor de la inteligencia del personaje.
+            vida (int): Valor de la vida del personaje.
+            destreza (int): Valor de la destreza del personaje.
+        """
         self.nombre = nombre
         self.cabeza = cabeza
         self.cuerpo = cuerpo
@@ -12,6 +29,11 @@ class Personaje:
         self.cp = self.cpCalculate(fuerza, inteligencia, vida, destreza)
 
     def cpCalculate(self, fuerza, inteligencia, vida, destreza):
+        """
+        Funcion que calcula el puntaje del personaje (cp) basado en sus atributos de habilidades
+        Returns:
+            float: Puntaje del personaje.
+        """
         return (int(fuerza) + int(inteligencia) + int(vida) + int(destreza)) / 4
 
 
