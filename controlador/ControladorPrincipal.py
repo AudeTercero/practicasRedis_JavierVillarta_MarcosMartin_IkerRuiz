@@ -46,7 +46,7 @@ def alta():
                 aux = altaNombre()
                 opcSalir = aux
                 if (opcSalir != '0'):
-                    VerificationExceptions.hayAlgo(aux)
+                    VerificationExceptions.longCadena(aux)
                     verde("Nombre introducido correctamente")
                     nombre = aux
                     intentos = 0
@@ -107,7 +107,7 @@ def baja():
             aux = VistaGeneral.baja()
             opcSalir = aux
             if opcSalir != '0':
-                VerificationExceptions.hayAlgo(aux)
+                VerificationExceptions.longCadena(aux)
                 VerificationExceptions.nombreNoExiste(aux)
                 nombre = aux
                 finBaja = True
@@ -141,9 +141,9 @@ def modificar():
         :return:
         """
     nombre = None
-    cabeza = None
-    cuerpo = None
-    piernas = None
+    nCabeza = None
+    nCuerpo = None
+    nPiernas = None
     color = None
     fuerza = None
     inteligencia = None
@@ -158,12 +158,12 @@ def modificar():
             aux = VistaGeneral.nombreModificar()
             opcSalir = aux
             if opcSalir != '0':
-                VerificationExceptions.hayAlgo(aux)
+                VerificationExceptions.longCadena(aux)
                 VerificationExceptions.nombreNoExiste(aux)
                 nombre = aux
                 salir = True
                 pj = ConexionBBDD.buscarBBDD(nombre)
-                ConexionBBDD.bajaBBDD(pj.nombre)
+
         except VerificationExceptions.MisExceptions as err:
             fallos += 1
             rojo(str(err))
@@ -182,7 +182,7 @@ def modificar():
                     aux = altaNombre()
                     opcSalir = aux
                     if opcSalir != '0':
-                        VerificationExceptions.hayAlgo(aux)
+                        VerificationExceptions.longCadena(aux)
                         VerificationExceptions.nombreExiste(aux)
                         nuevoNombre = aux
                         salirNombre = True
@@ -214,10 +214,9 @@ def modificar():
             nPiernas = None
             fallos = 0
             opcSalir = None
-            while fallos < 5 and nuevaDescripcion is None and opcSalir != '0':
+            while fallos < 5 and (nCabeza is None or nCuerpo is None or nPiernas is None) and opcSalir != '0':
                 try:
                     nCabeza,nCuerpo,nPiernas = altaApariencia()
-
                     if nCabeza == '0' or nCuerpo == '0' or nPiernas == '0':
                         opcSalir = '0'
                     else:
@@ -230,7 +229,9 @@ def modificar():
                 while not salir and op is None:
                     op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
                     if op == "s":
-                        ConsultasCurso.consModificar(nombre, 'descripcion', nuevaDescripcion)
+                        pj.cabeza = nCabeza
+                        pj.cuerpo = nCuerpo
+                        pj.piernas = nPiernas
                         print("Modificacion realizada correctamente")
                     elif op == "n":
                         salir = True
@@ -247,6 +248,7 @@ def modificar():
         else:
             rojo("No hay esa opcion")
     if pj is not None:
+        ConexionBBDD.bajaBBDD(pj.nombre)
         ConexionBBDD.altaBBDD(pj)
 
 

@@ -1,5 +1,5 @@
-def msgErrHayAlgo():
-    return 'No se ha escrito nada o es demasiado corto.'
+def msgErrLongitudCadena():
+    return 'El nombre debe contener entre 3 y 20 caracteres.'
 
 
 def msgErrNum():

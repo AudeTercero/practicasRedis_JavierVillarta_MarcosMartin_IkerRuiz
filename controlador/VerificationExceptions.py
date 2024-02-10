@@ -13,15 +13,15 @@ class MisExceptions(Exception):
         super().__init__(self.message)
 
 
-def hayAlgo(cadena):
+def longCadena(cadena):
     """
     Verifica que la cadena no este vacia
     Si lo esta, lanza una excepcion
     :param cadena: La cadena a validar
     :return:
     """
-    if len(cadena) < 3:
-        raise MisExceptions(msgErrHayAlgo())
+    if len(cadena) < 3 or len(cadena) > 20:
+        raise MisExceptions(msgErrLongitudCadena())
 
 
 def esNum(num):
