@@ -283,7 +283,7 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
     while fallos < 5 and nValor is None and opcSalir != '0':
         try:
             aux = selectAlta(campo)
-            VerificationExceptions.esRango(nValor, lim)
+            VerificationExceptions.esRango(aux, lim)
             if aux == '0':
                 opcSalir = '0'
             else:
