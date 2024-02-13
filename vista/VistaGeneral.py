@@ -2,7 +2,6 @@ import math
 
 from controlador.Colores import *
 from controlador.VerificationExceptions import esRango, esNum
-from prettytable import PrettyTable
 from colorama import Fore
 from modelo.Personaje import getCabezas, getCuerpos, getPiernas
 
@@ -172,6 +171,10 @@ def baja():
     opc = input('Introduce el nombre del personaje que quieras borrar: ')
     return opc
 
+def confirBaja():
+    opc = input("Seguro que quiere dar de baja al personaje?[S/N]: ").lower()
+    return opc
+
 
 # INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
@@ -192,6 +195,11 @@ def menuModificar():
                 "\t[Opcion: ")
     return opc
 
+def confirModificar(nombre):
+    opc = input(f"Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
+    return opc
+def modificacionCorrecta():
+    verde("Campo modificado correctamente")
 
 # INICIO PRINTS/INPUTS BUSCAR
 def buscar():
@@ -200,10 +208,8 @@ def buscar():
 
 
 def mostrarPj(pj):
-
     print("\n")
     print(Style.BRIGHT, end="")
-
 
     cabeza = int(pj.cabeza) - 1
     cuerpo = int(pj.cuerpo) - 1
@@ -214,8 +220,8 @@ def mostrarPj(pj):
     colorPj(pj.color)
     print(getCabezas()[cabeza][0], end="")
     print(Fore.RESET, end="")
-    print("   ║",end="")
-    mostrarNombre(pj.nombre,pj.color)
+    print("   ║", end="")
+    mostrarNombre(pj.nombre, pj.color)
     print("║")
     print("║  ", end="")
     colorPj(pj.color)
@@ -347,23 +353,20 @@ def mostrarTodos(personajes):
     print(Style.RESET_ALL)
 
 
-# INICIO PRINTS MOSTRAR TODOS
-'''def mostrarTodos(personajes):
-    x = PrettyTable()
-    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
-    for pj in personajes:
-        x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
-    print()
-    azul(str(x))'''
-
-
 # MENSAJES Y AVISOS
 def saliendo():
     print("Saliendo...")
 
+def salirSinGuardar():
+    print("Saliendo sin guardar...")
+
 
 def errorEntrada():
     rojo("Entrada no valida")
+
+
+def maxErrores():
+    amarillo("Se han superado el maximo de errores.")
 
 
 def campoCorrecto():

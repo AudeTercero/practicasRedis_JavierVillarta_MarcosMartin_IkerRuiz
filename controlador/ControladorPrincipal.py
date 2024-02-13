@@ -47,7 +47,7 @@ def alta():
                 opcSalir = aux
                 if (opcSalir != '0'):
                     VerificationExceptions.longCadena(aux)
-                    verde("Nombre introducido correctamente")
+                    campoCorrecto()
                     nombre = aux
                     intentos = 0
 
@@ -71,9 +71,9 @@ def alta():
         pj = Personaje(nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza)
         ConexionBBDD.altaBBDD(pj)
     elif (opcSalir == '0'):
-        print("Saliendo")
+        saliendo()
     else:
-        amarillo("Se han superado el maximo de errores.")
+        maxErrores()
 
 
 def pedirYComprobarValores(value, intentos, opcSalir, num, limite):
@@ -118,21 +118,21 @@ def baja():
     if fallos < 5 and opcSalir != '0':
         salir = False
         while not salir:
-            op = input("Seguro que quiere dar de baja al curso?[S/N]: ").lower()
+            op = confirBaja()
 
             if op == "s":
                 ConexionBBDD.bajaBBDD(nombre)
                 salir = True
             elif op == "n":
                 salir = True
-                print("Saliendo sin guardar...")
+                salirSinGuardar()
             else:
                 VistaGeneral.errorEntrada()
 
     elif fallos == 5:
-        amarillo("Has superado el maximos de fallos permitidos que son 5")
+        maxErrores()
     else:
-        print("Saliendo...")
+        saliendo()
 
 
 def modificar():
@@ -186,7 +186,7 @@ def modificar():
                         VerificationExceptions.nombreExiste(aux)
                         nuevoNombre = aux
                         salirNombre = True
-                        verde("Nombre correcto")
+                        campoCorrecto()
                 except VerificationExceptions.MisExceptions as err:
                     rojo(str(err))
                     fallos += 1
@@ -196,16 +196,16 @@ def modificar():
                     op = input("Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
                     if op == "s":
                         pj.nombre = nuevoNombre
-                        verde("Modificacion realizada correctamente")
+                        modificacionCorrecta()
                     elif op == "n":
                         salir = True
-                        print("Saliendo sin guardar...")
+                        salirSinGuardar()
                     else:
-                        rojo("Entrada no valida.")
+                        errorEntrada()
             elif fallos == 5:
-                amarillo("No puedes fallar mas de 5 veces")
+                maxErrores()
             else:
-                print("Saliendo...")
+                saliendo()
 
         # Modificacion del cuerpo
         elif opc == '2':
@@ -261,7 +261,7 @@ def modificar():
             rojo("No hay esa opcion")
 
     if pj is not None:
-        ConexionBBDD.bajaBBDD(pj.nombre)
+        ConexionBBDD.bajaBBDD(nombre)
         ConexionBBDD.altaBBDD(pj)
 
 
