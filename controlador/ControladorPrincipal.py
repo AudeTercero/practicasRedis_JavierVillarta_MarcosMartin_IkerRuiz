@@ -245,15 +245,25 @@ def modificar():
 
         # Modificacion del color
         elif opc == '3':
-            salir = modificarCampo(pj, salir, 1, 5, "el color")
+            color, salir = modificarCampo(pj, salir, 1, 5, "el color")
+            if color is not None:
+                pj.color = color
         elif opc == '4':
-            salir = modificarCampo(pj, salir, 2, 10, "la fuerza")
+            fuerza, salir = modificarCampo(pj, salir, 2, 10, "la fuerza")
+            if fuerza is not None:
+                pj.fuerza = fuerza
         elif opc == '5':
-            salir = modificarCampo(pj, salir, 3, 10, "la inteligencia")
+            intel, salir = modificarCampo(pj, salir, 3, 10, "la inteligencia")
+            if intel is not None:
+                pj.inteligencia = intel
         elif opc == '6':
-            salir = modificarCampo(pj, salir, 4, 10, "la vida")
+            vida, salir = modificarCampo(pj, salir, 4, 10, "la vida")
+            if vida is not None:
+                pj.vida = vida
         elif opc == '7':
-            salir = modificarCampo(pj, salir, 5, 10, "la destreza")
+            destreza, salir = modificarCampo(pj, salir, 5, 10, "la destreza")
+            if destreza is not None:
+                pj.destreza = destreza
         elif opc == '0':
             saliendo()
             salir = True
@@ -266,14 +276,15 @@ def modificar():
 
 
 def modificarCampo(pj, salir, campo, lim, nombreCampo):
-    nColor = None
+    nValor = None
     fallos = 0
     opcSalir = None
-    while fallos < 5 and nColor is None and opcSalir != '0':
+    aux = None
+    while fallos < 5 and nValor is None and opcSalir != '0':
         try:
-            nColor = selectAlta(campo)
-            VerificationExceptions.esRango(nColor, lim)
-            if nColor == '0':
+            aux = selectAlta(campo)
+            VerificationExceptions.esRango(nValor, lim)
+            if aux == '0':
                 opcSalir = '0'
             else:
                 campoCorrecto()
@@ -285,7 +296,7 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
         while not salir and op is None:
             confirModificar(nombreCampo)
             if op == "s":
-                pj.color = nColor
+                nValor = aux
                 modificacionCorrecta()
             elif op == "n":
                 salir = True
@@ -296,10 +307,14 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
         maxErrores()
     else:
         saliendo()
-    return fallos, opcSalir, salir
+    return nValor, salir
 
 
 def consultar():
+    """
+    Funcion que
+    :return:
+    """
     nombre = None
     opcSalir = None
     fallos = 0
@@ -327,7 +342,7 @@ def consultar():
 def mostrarTodos():
     """
     Funcion que recoge de la conexion de la base de datos los personajes guardados y que
-
+    y se los manda a la vista para mostrarlos
     :return:
     """
     personajes = ConexionBBDD.mostrarBBDD()
