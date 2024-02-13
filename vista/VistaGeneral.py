@@ -195,8 +195,8 @@ def menuModificar():
                 "\t[Opcion: ")
     return opc
 
-def confirModificar(nombre):
-    opc = input(f"Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
+def confirModificar(campo):
+    opc = input(f"Seguro que quiere modificar {campo} del curso?[S/N]: ").lower()
     return opc
 def modificacionCorrecta():
     verde("Campo modificado correctamente")

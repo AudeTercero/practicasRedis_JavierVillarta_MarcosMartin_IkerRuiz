@@ -193,7 +193,7 @@ def modificar():
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    op = input("Seguro que quiere modificar el nombre del curso?[S/N]: ").lower()
+                    confirModificar("el nombre")
                     if op == "s":
                         pj.nombre = nuevoNombre
                         modificacionCorrecta()
@@ -220,52 +220,52 @@ def modificar():
                     if nCabeza == '0' or nCuerpo == '0' or nPiernas == '0':
                         opcSalir = '0'
                     else:
-                        verde("Descripcion Correcta")
+                        campoCorrecto()
                 except VerificationExceptions.MisExceptions as err:
                     rojo(str(err))
                     fallos += 1
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
+                    confirModificar("la apariencia")
                     if op == "s":
                         pj.cabeza = nCabeza
                         pj.cuerpo = nCuerpo
                         pj.piernas = nPiernas
-                        print("Modificacion realizada correctamente")
+                        modificacionCorrecta()
                     elif op == "n":
                         salir = True
-                        print("Saliendo sin guardar...")
+                        salirSinGuardar()
                     else:
-                        rojo("Entrada no valida.")
+                        errorEntrada()
             elif fallos == 5:
-                amarillo("No puedes fallar mas de 5 veces")
+                maxErrores()
             else:
-                print("Saliendo...")
+                saliendo()
 
         # Modificacion del color
         elif opc == '3':
-            salir = modificarCampo(pj, salir, 1, 5)
+            salir = modificarCampo(pj, salir, 1, 5, "el color")
         elif opc == '4':
-            salir = modificarCampo(pj, salir, 2, 10)
+            salir = modificarCampo(pj, salir, 2, 10, "la fuerza")
         elif opc == '5':
-            salir = modificarCampo(pj, salir, 3, 10)
+            salir = modificarCampo(pj, salir, 3, 10, "la inteligencia")
         elif opc == '6':
-            salir = modificarCampo(pj, salir, 4, 10)
+            salir = modificarCampo(pj, salir, 4, 10, "la vida")
         elif opc == '7':
-            salir = modificarCampo(pj, salir, 5, 10)
+            salir = modificarCampo(pj, salir, 5, 10, "la destreza")
         elif opc == '0':
-            print("Saliendo...")
+            saliendo()
             salir = True
         else:
-            rojo("No hay esa opcion")
+            errorEntrada()
 
     if pj is not None:
         ConexionBBDD.bajaBBDD(nombre)
         ConexionBBDD.altaBBDD(pj)
 
 
-def modificarCampo(pj, salir, campo, lim):
+def modificarCampo(pj, salir, campo, lim, nombreCampo):
     nColor = None
     fallos = 0
     opcSalir = None
@@ -276,26 +276,26 @@ def modificarCampo(pj, salir, campo, lim):
             if nColor == '0':
                 opcSalir = '0'
             else:
-                verde("Descripcion Correcta")
+                campoCorrecto()
         except VerificationExceptions.MisExceptions as err:
             rojo(str(err))
             fallos += 1
     if fallos < 5 and opcSalir != '0':
         op = None
         while not salir and op is None:
-            op = input("Seguro que quiere modificar la descripcion del curso?[S/N]: ").lower()
+            confirModificar(nombreCampo)
             if op == "s":
                 pj.color = nColor
-                print("Modificacion realizada correctamente")
+                modificacionCorrecta()
             elif op == "n":
                 salir = True
-                print("Saliendo sin guardar...")
+                salirSinGuardar()
             else:
-                rojo("Entrada no valida.")
+                errorEntrada()
     elif fallos == 5:
-        amarillo("No puedes fallar mas de 5 veces")
+        maxErrores()
     else:
-        print("Saliendo...")
+        saliendo()
     return fallos, opcSalir, salir
 
 
@@ -318,19 +318,28 @@ def consultar():
             pj = ConexionBBDD.buscarBBDD(nombre)
             VistaGeneral.mostrarPj(pj)
 
-
         elif (fallos == 5):
-            amarillo("Has superado el maximos de fallos permitidos que son 5")
+            modificacionCorrecta()
         elif (opcSalir == '0'):
-            print("Saliendo...")
+            saliendo()
 
 
 def mostrarTodos():
+    """
+    Funcion que recoge de la conexion de la base de datos los personajes guardados y que
+
+    :return:
+    """
     personajes = ConexionBBDD.mostrarBBDD()
     VistaGeneral.mostrarTodos(personajes)
 
 
 def selectAlta(num):
+    """
+    Funcion que selecciona el tipo de vista de altas
+    :param num: recibe el numero para seleccionar el el tipo de vista de altas
+    :return: devuelve la funcion de la vista del tipo de alta que le pasamos por parametro
+    """
     if num == 1:
         return altaColor()
     elif num == 2:
