@@ -95,6 +95,29 @@ def mostrarPersonaje(cabeza, cuerpo, piernas):
     print(str(getPiernas()[piernas][1]))
 
 
+def menuVisual(titulo, elementos):
+    print("\n╔══════════════════════╗")
+    print(f"║ {titulo} ║")
+    print("╠╦═════════════════════╣")
+    cont = 1
+    for elemento in elementos:
+        print(f"║╠ {cont}. {elemento}", end="")
+        for _ in range(17 - len(elemento)):
+            print(" ", end="")
+        print("║")
+        cont += 1
+    print("║╠ 0. Salir            ║")
+    print("╚╬═════════════════════╝")
+    opc = input(" ╚═══╣Opcion: ")
+    return opc
+
+
+def header(titulo):
+    print("\n\t╔═══════════════════╦══════════╗")
+    print(f"\t║  {titulo}   ║ 0. Salir ║")
+    print("\t╠═╦═════════════════╩══════════╝")
+
+
 def menu():
     opcion = input("\n\n\t[==== MENU PERSONAJES ====>\n"
                    "\t[1. Alta\n"
@@ -109,7 +132,7 @@ def menu():
 
 # INICIO PRINTS/INPUTS ALTAS
 def altaNombre():
-    nombre = input("Introduce el nombre: ")
+    nombre = input("\t║ ╠ Nombre: ").lower()
     return nombre
 
 
@@ -168,8 +191,9 @@ def altaDestreza():
 # INICIO PRINTS/INPUTS BAJA
 
 def baja():
-    opc = input('Introduce el nombre del personaje que quieras borrar: ')
+    opc = input('Introduce el nombre del personaje que quieras borrar: ').lower()
     return opc
+
 
 def confirBaja():
     opc = input("Seguro que quiere dar de baja al personaje?[S/N]: ").lower()
@@ -178,7 +202,7 @@ def confirBaja():
 
 # INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
-    opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.')
+    opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.').lower()
     return opc
 
 
@@ -195,15 +219,19 @@ def menuModificar():
                 "\t[Opcion: ")
     return opc
 
+
 def confirModificar(campo):
     opc = input(f"Seguro que quiere modificar {campo} del curso?[S/N]: ").lower()
     return opc
+
+
 def modificacionCorrecta():
-    verde("Campo modificado correctamente")
+    verdeOK("Entrada Valida")
+
 
 # INICIO PRINTS/INPUTS BUSCAR
 def buscar():
-    opc = input('Introduce el nombre del personaje que quieras buscar: ')
+    opc = input('Introduce el nombre del personaje que quieras buscar: ').lower()
     return opc
 
 
@@ -284,7 +312,7 @@ def mostrarNombre(nombre, color):
     while disIzq > 0:
         print(" ", end="")
         disIzq -= 1
-    print(nombre, end="")
+    print(nombre.capitalize(), end="")
     while disDer > 0:
         print(" ", end="")
         disDer -= 1
@@ -357,6 +385,7 @@ def mostrarTodos(personajes):
 def saliendo():
     print("Saliendo...")
 
+
 def salirSinGuardar():
     print("Saliendo sin guardar...")
 
@@ -370,7 +399,7 @@ def maxErrores():
 
 
 def campoCorrecto():
-    verde("Campo introducido correctamente")
+    verdeOK("Entrada Valida")
 
 
 def colorPj(numString):

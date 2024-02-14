@@ -8,7 +8,7 @@ from vista.VistaGeneral import *
 def menu():
     finMenuAlumnos = False
     while not finMenuAlumnos:
-        opc = VistaGeneral.menu()
+        opc = VistaGeneral.menuVisual("   MENU PRINCIPAL   ", ["Alta", "Baja", "Modificar", "Consultar", "Mostrar Todos"])
         if opc == "1":
             alta()
         elif opc == "2":
@@ -27,6 +27,7 @@ def menu():
 
 
 def alta():
+    VistaGeneral.header("     ALTA     ")
     nombre = None
     cabeza = None
     cuerpo = None

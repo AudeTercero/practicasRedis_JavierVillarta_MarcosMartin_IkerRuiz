@@ -43,6 +43,17 @@ def verde(msg):
     print(Style.RESET_ALL)
 
 
+def verdeOK(msg):
+    """
+    Funcion que colorea de verde el mensaje que recibe y lo muestra
+    :param msg: El mensaje a colorear
+    """
+    print("\t║ ║", end="")
+    print(Style.BRIGHT, end="")
+    print(Fore.GREEN + msg + Fore.RESET, end="")
+    print(Style.RESET_ALL, end="")
+
+
 def morado(msg):
     """
     Funcion que colorea de morado el mensaje que recibe y lo muestra
