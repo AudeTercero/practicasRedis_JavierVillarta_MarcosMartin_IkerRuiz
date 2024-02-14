@@ -17,13 +17,25 @@ def menu():
         if opc == "1":
             alta()
         elif opc == "2":
-            baja()
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                baja()
         elif opc == "3":
-            modificar()
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                modificar()
         elif opc == "4":
-            consultar()
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                consultar()
         elif opc == "5":
-            mostrarTodos()
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                mostrarTodos()
         elif opc == "0":
             saliendo()
             finMenuAlumnos = True
@@ -32,11 +44,11 @@ def menu():
 
 
 def alta():
-    VistaGeneral.header("     ALTA     ")
     """
     Funcion para realizar las altas
     :return:
     """
+    VistaGeneral.header("     ALTA     ")
     nombre = None
     cabeza = None
     cuerpo = None
@@ -113,6 +125,7 @@ def baja():
        Funcion que da de baja un personaje
        :return:
        """
+    VistaGeneral.header("     BAJA     ")
     nombre = None
     opcSalir = None
     fallos = 0
@@ -137,6 +150,7 @@ def baja():
 
             if op == "s":
                 ConexionBBDD.bajaBBDD(nombre)
+                VistaGeneral.bordeFinalBaja()
                 salir = True
             elif op == "n":
                 salir = True
@@ -331,6 +345,7 @@ def consultar():
     para buscar un personaje por nombre.
     :return:
     """
+    VistaGeneral.header("  CONSULTAR   ")
     nombre = None
     opcSalir = None
     fallos = 0
@@ -346,11 +361,13 @@ def consultar():
             entrar = False
             rojo(str(err))
         if (fallos < 5 and opcSalir != '0' and entrar):
+            fallos = 0
             pj = ConexionBBDD.buscarBBDD(nombre)
+            VistaGeneral.bordeFinalConsulta()
             VistaGeneral.mostrarPj(pj)
 
         elif (fallos == 5):
-            modificacionCorrecta()
+            maxErrores()
         elif (opcSalir == '0'):
             saliendo()
 

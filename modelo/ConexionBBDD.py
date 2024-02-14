@@ -59,3 +59,16 @@ def existeNombreBBDD(nombre):
         return False
     else:
         return True
+
+
+def hayPersonajes():
+    con = connectBBDD()
+    keys = con.keys('*')
+    if len(keys) > 0:
+        return True
+    else:
+        return False
+
+def borrarTodaBD():
+    con = connectBBDD()
+    con.flushdb()

@@ -28,7 +28,7 @@ def msgErrNombreNoEncontrado():
     Funcion que devuelve un mensaje de error para cuando no se encuentra un
     nombre de personaje.
     """
-    return 'Nombre de personaje no encontrado.'
+    return '\t║ ║ Nombre de personaje no encontrado.'
 def msgErrNumDiez():
     """
     Funcion que devuelve un mensaje de error para cuando se espera un numero

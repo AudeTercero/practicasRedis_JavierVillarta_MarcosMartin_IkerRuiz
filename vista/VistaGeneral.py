@@ -86,7 +86,7 @@ def mostrarCuerpos(cabeza):
     bordeDer()
     bordeIzq()
     print(str(piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1]
-              + "  " + piernasMolde[1]),end="")
+              + "  " + piernasMolde[1]), end="")
     bordeDer()
     bordePersonajesBottom()
 
@@ -176,6 +176,18 @@ def bordeFinalAlta():
     print()
 
 
+def bordeFinalBaja():
+    print("\t╚═╩══╣ ", end="")
+    azul("Baja realizada con exito")
+    print()
+
+
+def bordeFinalConsulta():
+    print("\t╠═╬══╣ ", end="")
+    azul("Personaje encontrado")
+    print()
+
+
 def bordePersonajesTop():
     print("\t║ ╚═════════════════════════════════════════════════════════════════════╗")
 
@@ -217,7 +229,7 @@ def altaApariencia():
     piernas = input("\t║ ╠═══╣ Escoge piernas: ")
     esNum(piernas)
     esRango(piernas, 5)
-    #mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
+    # mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
 
     return cabeza, cuerpo, piernas
 
@@ -271,12 +283,14 @@ def altaDestreza():
 # INICIO PRINTS/INPUTS BAJA
 
 def baja():
+    bordeIzqDoble()
     opc = input('Introduce el nombre del personaje que quieras borrar: ').lower()
     return opc
 
 
 def confirBaja():
-    opc = input("Seguro que quiere dar de baja al personaje?[S/N]: ").lower()
+    bordeIzqDoble()
+    opc = input("Seguro que quieres dar de baja al personaje?[S/N]: ").lower()
     return opc
 
 
@@ -311,65 +325,65 @@ def modificacionCorrecta():
 
 # INICIO PRINTS/INPUTS BUSCAR
 def buscar():
+    bordeIzqDoble()
     opc = input('Introduce el nombre del personaje que quieras buscar: ').lower()
     return opc
 
 
 def mostrarPj(pj):
-    print("\n")
     print(Style.BRIGHT, end="")
 
     cabeza = int(pj.cabeza) - 1
     cuerpo = int(pj.cuerpo) - 1
     piernas = int(pj.piernas) - 1
 
-    print("╔═════════════════╦══════════════════════╗")
-    print("║  ", end="")
+    print("\t║ ╚═╗")
+    print("\t║   ╠═════════════════╦══════════════════════╗")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getCabezas()[cabeza][0], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     mostrarNombre(pj.nombre, pj.color)
     print("║")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getCabezas()[cabeza][1], end="")
     print(Fore.RESET, end="")
     print("   ╠══════════════════════╣")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getCuerpos()[cuerpo][0], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     barraProgreso(int(pj.fuerza), "FUERZA  ")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getCuerpos()[cuerpo][1], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     barraProgreso(int(pj.inteligencia), "INTELEC.")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getCuerpos()[cuerpo][2], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     barraProgreso(int(pj.vida), "VIDA    ")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getPiernas()[piernas][0], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     barraProgreso(int(pj.destreza), "DESTR.  ")
-    print("║  ", end="")
+    print("\t║   ║  ", end="")
     colorPj(pj.color)
     print(getPiernas()[piernas][1], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
     barraProgreso(int(pj.cp), "MEDIA   ")
-    print("╚═════════════════╩══════════════════════╝")
-
-    print(Style.RESET_ALL)
-
+    print("\t║   ╠═════════════════╩══════════════════════╝")
+    print(Style.RESET_ALL, end="")
+    print("\t║ ╔═╝")
     '''x = PrettyTable()
     x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
     x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
@@ -462,20 +476,29 @@ def mostrarTodos(personajes):
 
 
 # MENSAJES Y AVISOS
+
+
+def noHayPersonajes():
+    amarillo("\n\t\t╔═════════════════════════════════╗")
+    amarillo("\t\t║ No hay personajes guardados aun ║")
+    amarillo("\t\t╚═════════════════════════════════╝")
+
+
 def saliendo():
-    print("\t╚═╣Saliendo...")
+    print("     ╚═╣Saliendo...")
 
 
 def salirSinGuardar():
-    print("Saliendo sin guardar...")
+    print("\t╚═╣Saliendo sin guardar...")
 
 
 def errorEntrada():
-    rojo("Entrada no valida")
+    rojo("     ╚═╣ Entrada no valida")
 
 
 def maxErrores():
-    amarillo("Se han superado el maximo de errores.")
+    amarillo("\t║ ║ Se han superado el maximo de 5 errores.")
+    saliendo()
 
 
 def campoCorrecto():

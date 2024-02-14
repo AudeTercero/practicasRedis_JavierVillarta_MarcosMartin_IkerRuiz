@@ -19,7 +19,7 @@ def amarillo(msg):
     """
     print(Style.BRIGHT, end="")
     print(Fore.LIGHTYELLOW_EX + msg + Fore.RESET)
-    print(Style.RESET_ALL)
+    print(Style.RESET_ALL, end="")
 
 
 
