@@ -6,9 +6,13 @@ from vista.VistaGeneral import *
 
 
 def menu():
+    """
+    Funcion controlador del menu principal.
+    :return:
+    """
     finMenuAlumnos = False
     while not finMenuAlumnos:
-        opc = VistaGeneral.menuVisual("   MENU PRINCIPAL   ", ["Alta", "Baja", "Modificar", "Consultar", "Mostrar Todos"])
+        opc = VistaGeneral.menu()
         if opc == "1":
             alta()
         elif opc == "2":
@@ -27,7 +31,10 @@ def menu():
 
 
 def alta():
-    VistaGeneral.header("     ALTA     ")
+    """
+    Funcion para realizar las altas
+    :return:
+    """
     nombre = None
     cabeza = None
     cuerpo = None
@@ -52,7 +59,7 @@ def alta():
                     nombre = aux
                     intentos = 0
 
-            if cabeza is None or cuerpo is None or piernas is None:
+            if (cabeza is None or cuerpo is None or piernas is None) and opcSalir != '0':
                 cabeza, cuerpo, piernas = altaApariencia()
 
             color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
@@ -138,18 +145,10 @@ def baja():
 
 def modificar():
     """
-        Funcion que permite modificar los campos de un curso
+        Funcion permite modificar los campos de un personaje
         :return:
         """
     nombre = None
-    nCabeza = None
-    nCuerpo = None
-    nPiernas = None
-    color = None
-    fuerza = None
-    inteligencia = None
-    vida = None
-    destreza = None
     pj = None
     fallos = 0
     opcSalir = None
@@ -194,7 +193,7 @@ def modificar():
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    confirModificar("el nombre")
+                    op = confirModificar("el nombre")
                     if op == "s":
                         pj.nombre = nuevoNombre
                         modificacionCorrecta()
@@ -228,7 +227,7 @@ def modificar():
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    confirModificar("la apariencia")
+                    op = confirModificar("la apariencia")
                     if op == "s":
                         pj.cabeza = nCabeza
                         pj.cuerpo = nCuerpo
@@ -246,15 +245,25 @@ def modificar():
 
         # Modificacion del color
         elif opc == '3':
-            salir = modificarCampo(pj, salir, 1, 5, "el color")
+            color, salir = modificarCampo(salir, 1, 5, "el color")
+            if color is not None:
+                pj.color = color
         elif opc == '4':
-            salir = modificarCampo(pj, salir, 2, 10, "la fuerza")
+            fuerza, salir = modificarCampo(salir, 2, 10, "la fuerza")
+            if fuerza is not None:
+                pj.fuerza = fuerza
         elif opc == '5':
-            salir = modificarCampo(pj, salir, 3, 10, "la inteligencia")
+            intel, salir = modificarCampo(salir, 3, 10, "la inteligencia")
+            if intel is not None:
+                pj.inteligencia = intel
         elif opc == '6':
-            salir = modificarCampo(pj, salir, 4, 10, "la vida")
+            vida, salir = modificarCampo(salir, 4, 10, "la vida")
+            if vida is not None:
+                pj.vida = vida
         elif opc == '7':
-            salir = modificarCampo(pj, salir, 5, 10, "la destreza")
+            destreza, salir = modificarCampo(salir, 5, 10, "la destreza")
+            if destreza is not None:
+                pj.destreza = destreza
         elif opc == '0':
             saliendo()
             salir = True
@@ -266,17 +275,27 @@ def modificar():
         ConexionBBDD.altaBBDD(pj)
 
 
-def modificarCampo(pj, salir, campo, lim, nombreCampo):
-    nColor = None
+def modificarCampo(salir, campo, lim, nombreCampo):
+    """
+    Funcion que pide y devuelve un campo por medio de las vistas y la conexion de la base de datos para ser modificado
+    :param salir: recibe el booleano para controlar salida
+    :param campo: el numero del campo para modificar
+    :param lim: el limite del rango que puede ser o 5 para colores o 10 para las estadisticas
+    :param nombreCampo:
+    :return:devuelve el nuevo valor del campo a modificar
+    """
+    nValor = None
     fallos = 0
     opcSalir = None
-    while fallos < 5 and nColor is None and opcSalir != '0':
+    aux = None
+    while fallos < 5 and nValor is None and opcSalir != '0':
         try:
-            nColor = selectAlta(campo)
-            VerificationExceptions.esRango(nColor, lim)
-            if nColor == '0':
+            aux = selectAlta(campo)
+            if aux == '0':
                 opcSalir = '0'
             else:
+                VerificationExceptions.esRango(aux, lim)
+                nValor = aux
                 campoCorrecto()
         except VerificationExceptions.MisExceptions as err:
             rojo(str(err))
@@ -284,11 +303,11 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
     if fallos < 5 and opcSalir != '0':
         op = None
         while not salir and op is None:
-            confirModificar(nombreCampo)
+            op = confirModificar(nombreCampo)
             if op == "s":
-                pj.color = nColor
                 modificacionCorrecta()
             elif op == "n":
+                nValor = None
                 salir = True
                 salirSinGuardar()
             else:
@@ -297,10 +316,15 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
         maxErrores()
     else:
         saliendo()
-    return fallos, opcSalir, salir
+    return nValor, salir
 
 
 def consultar():
+    """
+    Funcion que actua de intermediario entre la vista y la conexion a la base de datos
+    para buscar un personaje por nombre.
+    :return:
+    """
     nombre = None
     opcSalir = None
     fallos = 0
@@ -328,7 +352,7 @@ def consultar():
 def mostrarTodos():
     """
     Funcion que recoge de la conexion de la base de datos los personajes guardados y que
-
+    y se los manda a la vista para mostrarlos
     :return:
     """
     personajes = ConexionBBDD.mostrarBBDD()
