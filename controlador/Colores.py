@@ -30,7 +30,7 @@ def azul(msg):
     """
     print(Style.BRIGHT, end="")
     print(Fore.CYAN + msg + Fore.RESET, end="")
-    print(Style.RESET_ALL)
+    print(Style.RESET_ALL, end="")
 
 
 def verde(msg):
@@ -40,7 +40,7 @@ def verde(msg):
     """
     print(Style.BRIGHT, end="")
     print(Fore.GREEN + msg + Fore.RESET, end="")
-    print(Style.RESET_ALL)
+    print(Style.RESET_ALL, end="")
 
 
 def verdeOK(msg):

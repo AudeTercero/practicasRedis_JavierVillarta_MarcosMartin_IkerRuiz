@@ -3,6 +3,7 @@ from modelo import ConexionBBDD
 from modelo.Personaje import Personaje
 from vista import VistaGeneral
 from vista.VistaGeneral import *
+from vista.VistaMenus import menuVisual
 
 
 def menu():
@@ -12,7 +13,7 @@ def menu():
     """
     finMenuAlumnos = False
     while not finMenuAlumnos:
-        opc = VistaGeneral.menuVisual("   MENU PRINCIPAL   ", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos"])
+        opc = menuVisual("MENU PRINCIPAL", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos"])
         if opc == "1":
             alta()
         elif opc == "2":
@@ -56,6 +57,7 @@ def alta():
                 opcSalir = aux
                 if (opcSalir != '0'):
                     VerificationExceptions.longCadena(aux)
+                    VerificationExceptions.nombreExiste(aux)
                     campoCorrecto()
                     nombre = aux
                     intentos = 0
@@ -64,7 +66,8 @@ def alta():
                 cabeza, cuerpo, piernas = altaApariencia()
 
             color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
-            VistaGeneral.mensajePuntos()
+            if opcSalir != '0':
+                VistaGeneral.mensajePuntos()
             fuerza, intentos, opcSalir = pedirYComprobarValores(fuerza, intentos, opcSalir, 2, 10)
             inteligencia, intentos, opcSalir = pedirYComprobarValores(inteligencia, intentos, opcSalir, 3, 10)
             vida, intentos, opcSalir = pedirYComprobarValores(vida, intentos, opcSalir, 4, 10)

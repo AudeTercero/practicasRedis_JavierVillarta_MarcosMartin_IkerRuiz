@@ -29,16 +29,19 @@ def mostrarCabezas():
     bordeIzq()
     verde(str(getCabezas()[0][0] + "1 " + getCabezas()[1][0] + "2 " + getCabezas()[2][0]
               + "3 " + getCabezas()[3][0] + "4 " + getCabezas()[4][0] + "5 "))
+    print("║")
     bordeIzq()
     verde(str(getCabezas()[0][1] + "  " + getCabezas()[1][1] + "  " + getCabezas()[2][1]
               + "  " + getCabezas()[3][1] + "  " + getCabezas()[4][1]))
+    bordeDer()
 
     ########################### CUERPOS DE EJEMPLO #################################
     # Despues se muestra el cuerpo molde 5 veces, ya que hay 5 tipos de cabeza
     for i in range(5):
         bordeIzq()
         print(str(cuerpoMolde[i] + "  " + cuerpoMolde[i] + "  " + cuerpoMolde[i] + "  "
-                  + cuerpoMolde[i] + "  " + cuerpoMolde[i]))
+                  + cuerpoMolde[i] + "  " + cuerpoMolde[i]), end="")
+        bordeDer()
     bordePersonajesBottom()
 
 
@@ -56,28 +59,35 @@ def mostrarCuerpos(cabeza):
     bordeIzq()
     azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
              getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
+    bordeDer()
     bordeIzq()
     azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
              getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
+    bordeDer()
 
     ################################# CUERPOS ######################################
     bordeIzq()
-    verde(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + " 3" + getCuerpos()[3][0]
-              + " 4" + getCuerpos()[4][0] + " 5"))
+    verde(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + "3 " + getCuerpos()[3][0]
+              + "4 " + getCuerpos()[4][0] + "5 "))
+    print("║")
     bordeIzq()
     verde(str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
               + "  " + getCuerpos()[4][1]))
+    bordeDer()
     bordeIzq()
     verde(str(getCuerpos()[0][2] + "  " + getCuerpos()[1][2] + "  " + getCuerpos()[2][2] + "  "
               + getCuerpos()[3][2] + "  " + getCuerpos()[4][2]))
+    bordeDer()
 
     ############################ PIERNAS DE EJEMPLO #################################
     bordeIzq()
     print(str(piernasMolde[0] + "  " + piernasMolde[0] + "  " + piernasMolde[0] + "  " + piernasMolde[0]
-              + "  " + piernasMolde[0]))
+              + "  " + piernasMolde[0]), end="")
+    bordeDer()
     bordeIzq()
     print(str(piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1]
-              + "  " + piernasMolde[1]))
+              + "  " + piernasMolde[1]),end="")
+    bordeDer()
     bordePersonajesBottom()
 
 
@@ -85,26 +95,33 @@ def mostrarPiernas(cabeza, cuerpo):
     bordePersonajesTop()
     bordeIzq()
     azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
-             getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  "))
+             getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
+    bordeDer()
     bordeIzq()
     azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
-             getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  "))
+             getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
+    bordeDer()
     bordeIzq()
     azul(str(getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " +
-             getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  "))
+             getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0]))
+    bordeDer()
     bordeIzq()
     azul(str(getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " +
-             getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  "))
+             getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1]))
+    bordeDer()
     bordeIzq()
     azul(str(getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " +
-             getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  "))
+             getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2]))
+    bordeDer()
 
     bordeIzq()
     verde(str(getPiernas()[0][0] + "1 " + getPiernas()[1][0] + "2 " + getPiernas()[2][0] + "3 "
               + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
+    print("║")
     bordeIzq()
     verde(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
-              + getPiernas()[3][1] + "  " + getPiernas()[4][1] + "  "))
+              + getPiernas()[3][1] + "  " + getPiernas()[4][1]))
+    bordeDer()
     bordePersonajesBottom()
 
 
@@ -150,12 +167,13 @@ def bordeIzqDoble():
 
 
 def bordeDer():
-    print(" ║")
+    print("  ║")
 
 
 def bordeFinalAlta():
     print("\t╚═╩══╣ ", end="")
     azul("Alta realizada con exito")
+    print()
 
 
 def bordePersonajesTop():
@@ -445,7 +463,7 @@ def mostrarTodos(personajes):
 
 # MENSAJES Y AVISOS
 def saliendo():
-    print("Saliendo...")
+    print("\t╚═╣Saliendo...")
 
 
 def salirSinGuardar():
