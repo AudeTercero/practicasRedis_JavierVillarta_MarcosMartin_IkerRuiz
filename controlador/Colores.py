@@ -51,7 +51,7 @@ def verdeOK(msg):
     print("\t║ ║", end="")
     print(Style.BRIGHT, end="")
     print(Fore.GREEN + msg + Fore.RESET, end="")
-    print(Style.RESET_ALL, end="")
+    print(Style.RESET_ALL)
 
 
 def morado(msg):

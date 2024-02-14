@@ -118,6 +118,9 @@ def header(titulo):
     print("\t╠═╦═════════════════╩══════════╝")
 
 
+def bordeIzq():
+    print("║ ║ ")
+
 def menu():
     opcion = input("\n\n\t[==== MENU PERSONAJES ====>\n"
                    "\t[1. Alta\n"
