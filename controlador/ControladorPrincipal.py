@@ -193,7 +193,7 @@ def modificar():
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    confirModificar("el nombre")
+                    op = confirModificar("el nombre")
                     if op == "s":
                         pj.nombre = nuevoNombre
                         modificacionCorrecta()
@@ -227,7 +227,7 @@ def modificar():
             if fallos < 5 and opcSalir != '0':
                 op = None
                 while not salir and op is None:
-                    confirModificar("la apariencia")
+                    op = confirModificar("la apariencia")
                     if op == "s":
                         pj.cabeza = nCabeza
                         pj.cuerpo = nCuerpo
@@ -295,7 +295,7 @@ def modificarCampo(salir, campo, lim, nombreCampo):
     if fallos < 5 and opcSalir != '0':
         op = None
         while not salir and op is None:
-            confirModificar(nombreCampo)
+            op = confirModificar(nombreCampo)
             if op == "s":
                 modificacionCorrecta()
             elif op == "n":
