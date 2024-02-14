@@ -6,6 +6,10 @@ from vista.VistaGeneral import *
 
 
 def menu():
+    """
+    Funcion controlador del menu principal.
+    :return:
+    """
     finMenuAlumnos = False
     while not finMenuAlumnos:
         opc = VistaGeneral.menu()
@@ -27,6 +31,10 @@ def menu():
 
 
 def alta():
+    """
+    Funcion para realizar las altas
+    :return:
+    """
     nombre = None
     cabeza = None
     cuerpo = None
@@ -137,7 +145,7 @@ def baja():
 
 def modificar():
     """
-        Funcion que permite modificar los campos de un curso
+        Funcion permite modificar los campos de un personaje
         :return:
         """
     nombre = None
@@ -277,12 +285,12 @@ def modificar():
 
 def modificarCampo(salir, campo, lim, nombreCampo):
     """
-    Funcion que pide y modifica un campo por medio de
-    :param salir:
-    :param campo:
-    :param lim:
+    Funcion que pide y devuelve un campo por medio de las vistas y la conexion de la base de datos para ser modificado
+    :param salir: recibe el booleano para controlar salida
+    :param campo: el numero del campo para modificar
+    :param lim: el limite del rango que puede ser o 5 para colores o 10 para las estadisticas
     :param nombreCampo:
-    :return:
+    :return:devuelve el nuevo valor del campo a modificar
     """
     nValor = None
     fallos = 0
