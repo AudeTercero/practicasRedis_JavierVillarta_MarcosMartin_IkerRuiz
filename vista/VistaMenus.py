@@ -85,5 +85,3 @@ def listadoCorto():
     return listadoMenu
 
 
-menuVisual("Menu largo", listadoLargo())
-menuVisual("Menu corto", listadoCorto())
