@@ -51,7 +51,7 @@ def alta():
                     nombre = aux
                     intentos = 0
 
-            if cabeza is None or cuerpo is None or piernas is None:
+            if cabeza is None or cuerpo is None or piernas is None or opcSalir == '0':
                 cabeza, cuerpo, piernas = altaApariencia()
 
             color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
@@ -276,6 +276,14 @@ def modificar():
 
 
 def modificarCampo(salir, campo, lim, nombreCampo):
+    """
+    Funcion que pide y modifica un campo por medio de
+    :param salir:
+    :param campo:
+    :param lim:
+    :param nombreCampo:
+    :return:
+    """
     nValor = None
     fallos = 0
     opcSalir = None
@@ -283,10 +291,10 @@ def modificarCampo(salir, campo, lim, nombreCampo):
     while fallos < 5 and nValor is None and opcSalir != '0':
         try:
             aux = selectAlta(campo)
-            VerificationExceptions.esRango(aux, lim)
             if aux == '0':
                 opcSalir = '0'
             else:
+                VerificationExceptions.esRango(aux, lim)
                 nValor = aux
                 campoCorrecto()
         except VerificationExceptions.MisExceptions as err:
@@ -313,7 +321,8 @@ def modificarCampo(salir, campo, lim, nombreCampo):
 
 def consultar():
     """
-    Funcion que actua de intermediario
+    Funcion que actua de intermediario entre la vista y la conexion a la base de datos
+    para buscar un personaje por nombre.
     :return:
     """
     nombre = None
