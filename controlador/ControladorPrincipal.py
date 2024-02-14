@@ -51,7 +51,7 @@ def alta():
                     nombre = aux
                     intentos = 0
 
-            if cabeza is None or cuerpo is None or piernas is None or opcSalir == '0':
+            if (cabeza is None or cuerpo is None or piernas is None) and opcSalir != '0':
                 cabeza, cuerpo, piernas = altaApariencia()
 
             color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
