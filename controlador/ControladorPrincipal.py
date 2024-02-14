@@ -245,23 +245,23 @@ def modificar():
 
         # Modificacion del color
         elif opc == '3':
-            color, salir = modificarCampo(pj, salir, 1, 5, "el color")
+            color, salir = modificarCampo(salir, 1, 5, "el color")
             if color is not None:
                 pj.color = color
         elif opc == '4':
-            fuerza, salir = modificarCampo(pj, salir, 2, 10, "la fuerza")
+            fuerza, salir = modificarCampo(salir, 2, 10, "la fuerza")
             if fuerza is not None:
                 pj.fuerza = fuerza
         elif opc == '5':
-            intel, salir = modificarCampo(pj, salir, 3, 10, "la inteligencia")
+            intel, salir = modificarCampo(salir, 3, 10, "la inteligencia")
             if intel is not None:
                 pj.inteligencia = intel
         elif opc == '6':
-            vida, salir = modificarCampo(pj, salir, 4, 10, "la vida")
+            vida, salir = modificarCampo(salir, 4, 10, "la vida")
             if vida is not None:
                 pj.vida = vida
         elif opc == '7':
-            destreza, salir = modificarCampo(pj, salir, 5, 10, "la destreza")
+            destreza, salir = modificarCampo(salir, 5, 10, "la destreza")
             if destreza is not None:
                 pj.destreza = destreza
         elif opc == '0':
@@ -275,12 +275,12 @@ def modificar():
         ConexionBBDD.altaBBDD(pj)
 
 
-def modificarCampo(pj, salir, campo, lim, nombreCampo):
+def modificarCampo(salir, campo, lim, nombreCampo):
     nValor = None
     fallos = 0
     opcSalir = None
     aux = None
-    while fallos < 5 and nValor is None and opcSalir != '0':
+    while fallos < 5 and opcSalir != '0':
         try:
             aux = selectAlta(campo)
             VerificationExceptions.esRango(aux, lim)
@@ -312,7 +312,7 @@ def modificarCampo(pj, salir, campo, lim, nombreCampo):
 
 def consultar():
     """
-    Funcion que
+    Funcion que recog
     :return:
     """
     nombre = None
