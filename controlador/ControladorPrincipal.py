@@ -280,13 +280,14 @@ def modificarCampo(salir, campo, lim, nombreCampo):
     fallos = 0
     opcSalir = None
     aux = None
-    while fallos < 5 and opcSalir != '0':
+    while fallos < 5 and nValor is None and opcSalir != '0':
         try:
             aux = selectAlta(campo)
             VerificationExceptions.esRango(aux, lim)
             if aux == '0':
                 opcSalir = '0'
             else:
+                nValor = aux
                 campoCorrecto()
         except VerificationExceptions.MisExceptions as err:
             rojo(str(err))
@@ -296,9 +297,9 @@ def modificarCampo(salir, campo, lim, nombreCampo):
         while not salir and op is None:
             confirModificar(nombreCampo)
             if op == "s":
-                nValor = aux
                 modificacionCorrecta()
             elif op == "n":
+                nValor = None
                 salir = True
                 salirSinGuardar()
             else:
@@ -312,7 +313,7 @@ def modificarCampo(salir, campo, lim, nombreCampo):
 
 def consultar():
     """
-    Funcion que recog
+    Funcion que actua de intermediario
     :return:
     """
     nombre = None
