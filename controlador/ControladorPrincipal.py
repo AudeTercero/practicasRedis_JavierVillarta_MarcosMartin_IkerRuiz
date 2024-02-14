@@ -149,14 +149,6 @@ def modificar():
         :return:
         """
     nombre = None
-    nCabeza = None
-    nCuerpo = None
-    nPiernas = None
-    color = None
-    fuerza = None
-    inteligencia = None
-    vida = None
-    destreza = None
     pj = None
     fallos = 0
     opcSalir = None
