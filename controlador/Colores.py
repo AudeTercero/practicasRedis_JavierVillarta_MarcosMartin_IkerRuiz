@@ -8,7 +8,7 @@ def rojo(msg):
     """
     print(Style.BRIGHT, end="")
     print(Fore.LIGHTRED_EX + msg + Fore.RESET)
-    print(Style.RESET_ALL)
+    print(Style.RESET_ALL, end="")
 
 
 
@@ -48,7 +48,7 @@ def verdeOK(msg):
     Funcion que colorea de verde el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
     """
-    print("\t║ ║", end="")
+    print("\t║ ║ ", end="")
     print(Style.BRIGHT, end="")
     print(Fore.GREEN + msg + Fore.RESET, end="")
     print(Style.RESET_ALL)

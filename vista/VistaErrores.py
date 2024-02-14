@@ -11,7 +11,7 @@ def msgErrNum():
     Funcion que devuelve un mensaje de error para cuando se espera solo entrada
     numerica.
     """
-    return 'Debe introducir solo numeros.'
+    return '\t║ ║ Debe introducir solo numeros.'
 
 
 def msgErrNombre():

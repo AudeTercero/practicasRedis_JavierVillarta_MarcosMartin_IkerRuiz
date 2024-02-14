@@ -25,16 +25,21 @@ def mostrarCabezas():
 
     # Primero, se muestra la primera linea de cada tipo de cabeza y despues la segunda linea de cada cabeza
     # Se llama a la funcion verde, la cual muestra el contenido recibido en color verde
+    bordePersonajesTop()
+    bordeIzq()
     verde(str(getCabezas()[0][0] + "1 " + getCabezas()[1][0] + "2 " + getCabezas()[2][0]
               + "3 " + getCabezas()[3][0] + "4 " + getCabezas()[4][0] + "5 "))
+    bordeIzq()
     verde(str(getCabezas()[0][1] + "  " + getCabezas()[1][1] + "  " + getCabezas()[2][1]
               + "  " + getCabezas()[3][1] + "  " + getCabezas()[4][1]))
 
     ########################### CUERPOS DE EJEMPLO #################################
     # Despues se muestra el cuerpo molde 5 veces, ya que hay 5 tipos de cabeza
     for i in range(5):
+        bordeIzq()
         print(str(cuerpoMolde[i] + "  " + cuerpoMolde[i] + "  " + cuerpoMolde[i] + "  "
                   + cuerpoMolde[i] + "  " + cuerpoMolde[i]))
+    bordePersonajesBottom()
 
 
 def mostrarCuerpos(cabeza):
@@ -47,42 +52,60 @@ def mostrarCuerpos(cabeza):
         "    /   \\   ",
         "   /     \\  "]
     ################################# CABEZAS ######################################
+    bordePersonajesTop()
+    bordeIzq()
     azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
              getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
+    bordeIzq()
     azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
              getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
 
     ################################# CUERPOS ######################################
+    bordeIzq()
     verde(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + " 3" + getCuerpos()[3][0]
               + " 4" + getCuerpos()[4][0] + " 5"))
+    bordeIzq()
     verde(str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
               + "  " + getCuerpos()[4][1]))
+    bordeIzq()
     verde(str(getCuerpos()[0][2] + "  " + getCuerpos()[1][2] + "  " + getCuerpos()[2][2] + "  "
               + getCuerpos()[3][2] + "  " + getCuerpos()[4][2]))
 
     ############################ PIERNAS DE EJEMPLO #################################
+    bordeIzq()
     print(str(piernasMolde[0] + "  " + piernasMolde[0] + "  " + piernasMolde[0] + "  " + piernasMolde[0]
               + "  " + piernasMolde[0]))
+    bordeIzq()
     print(str(piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1] + "  " + piernasMolde[1]
               + "  " + piernasMolde[1]))
+    bordePersonajesBottom()
 
 
 def mostrarPiernas(cabeza, cuerpo):
+    bordePersonajesTop()
+    bordeIzq()
     azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
              getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  "))
+    bordeIzq()
     azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
              getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  "))
+    bordeIzq()
     azul(str(getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " +
              getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  "))
+    bordeIzq()
     azul(str(getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " +
              getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  "))
+    bordeIzq()
     azul(str(getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " +
              getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  "))
 
+    bordeIzq()
     verde(str(getPiernas()[0][0] + "1 " + getPiernas()[1][0] + "2 " + getPiernas()[2][0] + "3 "
               + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
+    bordeIzq()
     verde(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
               + getPiernas()[3][1] + "  " + getPiernas()[4][1] + "  "))
+    bordePersonajesBottom()
 
 
 def mostrarPersonaje(cabeza, cuerpo, piernas):
@@ -119,7 +142,29 @@ def header(titulo):
 
 
 def bordeIzq():
-    print("║ ║ ")
+    print("\t║ ", end="")
+
+
+def bordeIzqDoble():
+    print("\t║ ╠ ", end="")
+
+
+def bordeDer():
+    print(" ║")
+
+
+def bordeFinalAlta():
+    print("\t╚═╩══╣ ", end="")
+    azul("Alta realizada con exito")
+
+
+def bordePersonajesTop():
+    print("\t║ ╚═════════════════════════════════════════════════════════════════════╗")
+
+
+def bordePersonajesBottom():
+    print("\t║ ╔═════════════════════════════════════════════════════════════════════╝")
+
 
 def menu():
     opcion = input("\n\n\t[==== MENU PERSONAJES ====>\n"
@@ -141,53 +186,67 @@ def altaNombre():
 
 def altaApariencia():
     mostrarCabezas()
-    cabeza = input("Escoge cabeza: ")
+    cabeza = input("\t║ ╠═══╣ Escoge cabeza: ")
     esNum(cabeza)
     esRango(cabeza, 5)
     mostrarCuerpos(int(cabeza) - 1)
 
-    cuerpo = input("Escoge cuerpo: ")
+    cuerpo = input("\t║ ╠═══╣ Escoge cuerpo: ")
     esNum(cuerpo)
     esRango(cuerpo, 5)
     mostrarPiernas(int(cabeza) - 1, int(cuerpo) - 1)
 
-    piernas = input("Escoge piernas: ")
+    piernas = input("\t║ ╠═══╣ Escoge piernas: ")
     esNum(piernas)
     esRango(piernas, 5)
-    mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
+    #mostrarPersonaje(int(cabeza) - 1, int(cuerpo) - 1, int(piernas) - 1)
 
     return cabeza, cuerpo, piernas
 
 
 def altaColor():
-    opc = input("\n\n\t[==== Escoge un color ====>\n"
+    print("\t║ ╠════════════════════════════════╗")
+    print("\t║ ║ 1. Rojo  2. Amarillo  3. Verde ║")
+    print("\t║ ║ 4. Azul  5. Morado    6. Salir ║")
+    print("\t║ ╠════════════════════════════════╝")
+    opc = input("\t║ ╠ Color: ")
+    '''opc = input("\n\n\t[==== Escoge un color ====>\n"
                 "\t[1. Rojo\n"
                 "\t[2. Amarillo\n"
                 "\t[3. Verde\n"
                 "\t[4. Azul\n"
                 "\t[5. Morado\n"
                 "\t[0. Salir\n"
-                "\t[===== Opcion: ")
+                "\t[===== Opcion: ")'''
     return opc
 
 
+def mensajePuntos():
+    print("\t║ ║\n\t║ ║ A continuacion, introduce la puntuacion del 1 al 10")
+    print("\t║ ║ de los siguientes atributos\n\t║ ║")
+
+
 def altaFuerza():
-    opc = input('Indica la fuerza del personaje del 1 al 10')
+    bordeIzqDoble()
+    opc = input('Fuerza: ')
     return opc
 
 
 def altaInteligencia():
-    opc = input('Indica la inteligencia del personaje del 1 al 10')
+    bordeIzqDoble()
+    opc = input('Inteligencia: ')
     return opc
 
 
 def altaVida():
-    opc = input('Indica la vida del personaje del 1 al 10')
+    bordeIzqDoble()
+    opc = input('Vida: ')
     return opc
 
 
 def altaDestreza():
-    opc = input('Indica la destreza del personaje del 1 al 10')
+    bordeIzqDoble()
+    opc = input('Destreza: ')
     return opc
 
 
@@ -229,7 +288,7 @@ def confirModificar(campo):
 
 
 def modificacionCorrecta():
-    verdeOK("Entrada Valida")
+    verdeOK("\tEntrada Valida")
 
 
 # INICIO PRINTS/INPUTS BUSCAR
@@ -402,7 +461,7 @@ def maxErrores():
 
 
 def campoCorrecto():
-    verdeOK("Entrada Valida")
+    verdeOK("\tEntrada Valida")
 
 
 def colorPj(numString):

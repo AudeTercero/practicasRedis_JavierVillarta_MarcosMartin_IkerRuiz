@@ -64,6 +64,7 @@ def alta():
                 cabeza, cuerpo, piernas = altaApariencia()
 
             color, intentos, opcSalir = pedirYComprobarValores(color, intentos, opcSalir, 1, 5)
+            VistaGeneral.mensajePuntos()
             fuerza, intentos, opcSalir = pedirYComprobarValores(fuerza, intentos, opcSalir, 2, 10)
             inteligencia, intentos, opcSalir = pedirYComprobarValores(inteligencia, intentos, opcSalir, 3, 10)
             vida, intentos, opcSalir = pedirYComprobarValores(vida, intentos, opcSalir, 4, 10)
@@ -79,6 +80,8 @@ def alta():
     if (intentos < 5 and opcSalir != '0'):
         pj = Personaje(nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza)
         ConexionBBDD.altaBBDD(pj)
+        VistaGeneral.bordeFinalAlta()
+        VistaGeneral.mostrarPj(pj)
     elif (opcSalir == '0'):
         saliendo()
     else:
