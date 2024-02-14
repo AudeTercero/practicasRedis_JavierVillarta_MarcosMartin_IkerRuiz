@@ -309,7 +309,6 @@ def modificarCampo(salir, campo, lim, nombreCampo):
                 modificacionCorrecta()
             elif op == "n":
                 nValor = None
-                salir = True
                 salirSinGuardar()
             else:
                 errorEntrada()
