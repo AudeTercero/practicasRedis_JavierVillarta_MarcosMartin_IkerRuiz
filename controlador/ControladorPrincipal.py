@@ -12,7 +12,7 @@ def menu():
     """
     finMenuAlumnos = False
     while not finMenuAlumnos:
-        opc = VistaGeneral.menu()
+        opc = VistaGeneral.menuVisual("   MENU PRINCIPAL   ", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos"])
         if opc == "1":
             alta()
         elif opc == "2":
@@ -31,6 +31,7 @@ def menu():
 
 
 def alta():
+    VistaGeneral.header("     ALTA     ")
     """
     Funcion para realizar las altas
     :return:
@@ -308,7 +309,6 @@ def modificarCampo(salir, campo, lim, nombreCampo):
                 modificacionCorrecta()
             elif op == "n":
                 nValor = None
-                salir = True
                 salirSinGuardar()
             else:
                 errorEntrada()
