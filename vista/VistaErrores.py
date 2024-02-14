@@ -1,3 +1,4 @@
+from controlador.Colores import rojo
 def msgErrLongitudCadena():
     """
     Funcion que devuelve un mensaje de error para cuando la longitud de una cadena
@@ -13,6 +14,8 @@ def msgErrNum():
     """
     return '\t║ ║ Debe introducir solo numeros.'
 
+def msgErrConexion():
+    rojo("No hay contexion con la base de datos, comprueba que esta contectada")
 
 def msgErrNombre():
     """
