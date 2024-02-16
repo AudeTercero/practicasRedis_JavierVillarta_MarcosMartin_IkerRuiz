@@ -144,4 +144,3 @@ def borrarTodaBD():
     con.flushdb()
 
 
-altaBBDD(Personaje("1111", 1, 1, 1, 1, 1, 1, 1, 1))
