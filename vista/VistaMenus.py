@@ -2,6 +2,12 @@ import math
 
 
 def menuVisual(titulo, elementos):
+    """
+    Funcion que pinta un menu con un titulo y elementos especificos
+    :param titulo: titulo que encabeza el menu
+    :param elementos: elementos contenidos en el menu
+    :return: opcion elegida
+    """
     lenMayor = mayorElemento(elementos)
     print("\n╔",end="")
     rayasModulares(lenMayor,0)
@@ -29,6 +35,12 @@ def menuVisual(titulo, elementos):
 
 
 def rayasModulares(lenMayor,var):
+    '''
+    Funcion que pinta las rayas de un menu a partir de una longitud espefica
+    y le puede da mayor longitud al menu cuando se necesita.
+    :param lenMayor: longitud del elemento mas largo que estara en el menu
+    :param var: 0 si se trata de un titulo o -1 para el resto de elementos
+    '''
     lenTotal = 17
     if lenMayor >= lenTotal:
         lenTotal = lenMayor + 8
@@ -40,6 +52,11 @@ def rayasModulares(lenMayor,var):
 
 
 def mayorElemento(elementos):
+    '''
+    Funcion que devuelve la longitud del elemento mas largo de una lista
+    :param elementos: lista de elementos que iran dentro de un menu
+    :return lenMayor: longitud del elemento mas largo del listado
+    '''
     lenMayor = 0
     for elemento in elementos:
         if len(elemento) > lenMayor:
@@ -48,6 +65,11 @@ def mayorElemento(elementos):
 
 
 def mostrarNombre(elemento, lenMayor):
+    '''
+    Funcion que muestra  colocado, el nombre de un personaje dentro de un menu
+    :param elemento: nombre a pintar en el menu
+    :param lenMayor:longitud del elemento mas grande del menu
+    '''
     lenTotal = 17
     if lenMayor >= lenTotal:
         lenTotal = lenMayor + 3
@@ -59,6 +81,11 @@ def mostrarNombre(elemento, lenMayor):
 
 
 def mostrarTituloMenu(nombre, lenMayor):
+    '''
+    Funcion que muestra el tiulo colocado, dentro de un menu.
+    :param nombre: titulo del menu
+    :param lenMayor: longitud del elemento mas grande del menu
+    '''
     lenTotal = 17
     if lenMayor >= lenTotal:
         lenTotal = lenMayor + 8
@@ -74,14 +101,5 @@ def mostrarTituloMenu(nombre, lenMayor):
         print(" ", end="")
         disDer -= 1
 
-
-def listadoLargo():
-    listadoMenu = ("alta", "baja", "esternocleidomastoideo plus ultra")
-    return listadoMenu
-
-
-def listadoCorto():
-    listadoMenu = ("alta", "baja", "modifica")
-    return listadoMenu
 
 
