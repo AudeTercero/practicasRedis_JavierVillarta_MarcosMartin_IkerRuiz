@@ -380,7 +380,7 @@ def mostrarPj(pj):
     print(getPiernas()[piernas][1], end="")
     print(Fore.RESET, end="")
     print("   ║", end="")
-    barraProgreso(int(pj.cp), "MEDIA   ")
+    barraProgreso(int(pj.cp), "CP      ")
     print("\t║   ╠═════════════════╩══════════════════════╝")
     print(Style.RESET_ALL, end="")
     print("\t║ ╔═╝")
@@ -469,7 +469,7 @@ def mostrarTodos(personajes):
         print(getPiernas()[piernas][1], end="")
         print(Fore.RESET, end="")
         print("   ║", end="")
-        barraProgreso(int(pj.cp), "MEDIA   ")
+        barraProgreso(int(pj.cp), "CP      ")
         if cont == len(personajes):
             print("╚═════════════════╩══════════════════════╝")
     print(Style.RESET_ALL)
@@ -485,7 +485,7 @@ def noHayPersonajes():
 
 
 def saliendo():
-    print("     ╚═╣Saliendo...")
+    print("\t╚═╣Saliendo...")
 
 
 def salirSinGuardar():

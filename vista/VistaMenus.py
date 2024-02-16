@@ -24,7 +24,7 @@ def menuVisual(titulo, elementos):
     print("╚╬",end="")
     rayasModulares(lenMayor, -1)
     print("╝")
-    opc = input(" ╚═══╣Opcion: ")
+    opc = input(" ╚══╣Opcion: ")
     return opc
 
 
