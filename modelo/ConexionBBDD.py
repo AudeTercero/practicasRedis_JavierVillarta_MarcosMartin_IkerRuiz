@@ -24,6 +24,7 @@ def altaBBDD(pj):
         'cabeza': pj.cabeza,
         'cuerpo': pj.cuerpo,
         'piernas': pj.piernas,
+        'color':pj.color,
         'fuerza': pj.fuerza,
         'inteligencia': pj.inteligencia,
         'vida': pj.vida,
