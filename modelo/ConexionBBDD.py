@@ -1,3 +1,5 @@
+import json
+
 import redis
 
 from modelo.Personaje import Personaje
@@ -14,11 +16,30 @@ def connectBBDD():
 
 def altaBBDD(pj):
     """
-    Funcion que agrega un personaje a la base de datos Redis.
+        Funcion que agrega un personaje a la base de datos Redis mediante un json.
+        """
+    con = connectBBDD()
+    pjToDic = {
+        'nombre': pj.nombre,
+        'cabeza': pj.cabeza,
+        'cuerpo': pj.cuerpo,
+        'piernas': pj.piernas,
+        'fuerza': pj.fuerza,
+        'inteligencia': pj.inteligencia,
+        'vida': pj.vida,
+        'destreza': pj.destreza
+    }
+    pjToJson = json.dumps(pjToDic)
+    con.set(pj.nombre, pjToJson)
+
+'''def altaBBDD(pj):
+    """
+    Funcion que agrega un personaje a la base de datos Redis mediante una cadena.
     """
     con = connectBBDD()
     con.set(pj.nombre,
             f'{pj.nombre},{pj.cabeza},{pj.cuerpo},{pj.piernas},{pj.color},{pj.fuerza},{pj.inteligencia},{pj.vida},{pj.destreza}')
+'''
 
 
 def bajaBBDD(nombre):
@@ -28,10 +49,31 @@ def bajaBBDD(nombre):
     con = connectBBDD()
     con.delete(nombre)
 
-
 def buscarBBDD(nombre):
     """
-    Funcion que busca por medio del nombre un personaje en la base de datos Redis y
+        Funcion que busca por medio del nombre un personaje en json en la base de datos Redis y
+        lo devuelve.
+        :Params: nombre
+        """
+    con = connectBBDD()
+    valores = con.get(nombre)
+    pJson=json.loads(valores)
+    return Personaje(
+        pJson["nombre"],
+        pJson["cabeza"],
+        pJson["cuerpo"],
+        pJson["piernas"],
+        pJson["color"],
+        pJson["fuerza"],
+        pJson["inteligencia"],
+        pJson["vida"],
+        pJson["destreza"]
+    )
+
+
+'''def buscarBBDD(nombre):
+    """
+    Funcion que busca por medio del nombre un personaje en una cadena en la base de datos Redis y
     lo devuelve.
     :Params: nombre
     """
@@ -40,8 +82,35 @@ def buscarBBDD(nombre):
     return Personaje(nombre=valores[0], cabeza=valores[1], cuerpo=valores[2], piernas=valores[3], color=valores[4],
                      fuerza=valores[5], inteligencia=valores[6], vida=valores[7], destreza=valores[8])
 
+'''
 
 def mostrarBBDD():
+    """
+    Funcion que recoge los personajes en un json de la base de datos y los retorna en un listado de personajes
+    :return:
+    """
+    con = connectBBDD()
+    keys = con.keys('*')
+    personajes = []
+    for key in keys:
+        valores = con.get(key)
+        pJson = json.loads(valores)
+        personajes.append(
+            Personaje(
+                pJson["nombre"],
+                pJson["cabeza"],
+                pJson["cuerpo"],
+                pJson["piernas"],
+                pJson["color"],
+                pJson["fuerza"],
+                pJson["inteligencia"],
+                pJson["vida"],
+                pJson["destreza"]
+            )
+        )
+    return personajes
+
+'''def mostrarBBDD():
     con = connectBBDD()
     keys = con.keys('*')
     personajes = []
@@ -50,7 +119,7 @@ def mostrarBBDD():
         personajes.append(
             Personaje(nombre=valores[0], cabeza=valores[1], cuerpo=valores[2], piernas=valores[3], color=valores[4],
                       fuerza=valores[5], inteligencia=valores[6], vida=valores[7], destreza=valores[8]))
-    return personajes
+    return personajes'''
 
 
 def existeNombreBBDD(nombre):
@@ -69,6 +138,10 @@ def hayPersonajes():
     else:
         return False
 
+
 def borrarTodaBD():
     con = connectBBDD()
     con.flushdb()
+
+
+altaBBDD(Personaje("1111", 1, 1, 1, 1, 1, 1, 1, 1))
