@@ -196,6 +196,10 @@ def bordePersonajesBottom():
     print("\t║ ╔═════════════════════════════════════════════════════════════════════╝")
 
 
+def bordeFinSimple():
+    print("\t╚═╝")
+
+
 def menu():
     opcion = input("\n\n\t[==== MENU PERSONAJES ====>\n"
                    "\t[1. Alta\n"
@@ -296,14 +300,15 @@ def confirBaja():
 
 # INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
-    opc = input('Introduce el nombre del personaje que quiera modificar o pulse 0 para salir.').lower()
+    bordeIzqDoble()
+    opc = input('Introduce el nombre del personaje que quieras modificar: ').lower()
     return opc
 
 
 def menuModificar():
     opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
-                "\t[1.Apariencia\n"
-                "\t[2.Piernas\n"
+                "\t[1.Nombre\n"
+                "\t[2.Apariencia\n"
                 "\t[3.Color\n"
                 "\t[4.Fuerza\n"
                 "\t[5.Inteligencia\n"
@@ -315,12 +320,20 @@ def menuModificar():
 
 
 def confirModificar(campo):
-    opc = input(f"Seguro que quiere modificar {campo} del curso?[S/N]: ").lower()
+    bordeIzqDoble()
+    opc = input(f"Seguro que quieres modificar {campo} del curso?[S/N]: ").lower()
     return opc
 
 
-def modificacionCorrecta():
-    verdeOK("\tEntrada Valida")
+def modificacionSi():
+    print("\t║ ║\t", end="")
+    azul("\tCampo Modificado")
+    print()
+
+
+def modificacionNo():
+    print("\t║ ║\tVolviendo sin Modificar...")
+
 
 
 # INICIO PRINTS/INPUTS BUSCAR
@@ -493,7 +506,7 @@ def salirSinGuardar():
 
 
 def errorEntrada():
-    rojo("     ╚═╣ Entrada no valida")
+    rojo("    ╚═╣ Entrada no valida")
 
 
 def maxErrores():

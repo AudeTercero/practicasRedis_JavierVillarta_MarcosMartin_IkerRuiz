@@ -169,6 +169,7 @@ def modificar():
         Funcion permite modificar los campos de un personaje
         :return:
         """
+    VistaGeneral.header("   MODIFICAR  ")
     nombre = None
     pj = None
     fallos = 0
@@ -189,8 +190,14 @@ def modificar():
             fallos += 1
             rojo(str(err))
     salir = False
+
+
     while fallos < 5 and not salir and opcSalir != '0':
-        opc = VistaGeneral.menuModificar()
+        bordeFinSimple()
+
+        #opc = VistaGeneral.menuModificar()
+        opc = menuVisual("MENU MODIFICAR", ["Nombre", "Apariencia", "Color", "Fuerza", "Inteligencia"
+            , "Vida", "Destreza"])
 
         # Modificacion del nombre
         if opc == '1':
@@ -217,10 +224,10 @@ def modificar():
                     op = confirModificar("el nombre")
                     if op == "s":
                         pj.nombre = nuevoNombre
-                        modificacionCorrecta()
+                        modificacionSi()
                     elif op == "n":
                         salir = True
-                        salirSinGuardar()
+                        modificacionNo()
                     else:
                         errorEntrada()
             elif fallos == 5:
@@ -253,10 +260,10 @@ def modificar():
                         pj.cabeza = nCabeza
                         pj.cuerpo = nCuerpo
                         pj.piernas = nPiernas
-                        modificacionCorrecta()
+                        modificacionSi()
                     elif op == "n":
                         salir = True
-                        salirSinGuardar()
+                        modificacionNo()
                     else:
                         errorEntrada()
             elif fallos == 5:
@@ -269,31 +276,38 @@ def modificar():
             color, salir = modificarCampo(salir, 1, 5, "el color")
             if color is not None:
                 pj.color = color
+        # Modificacion de la fuerza
         elif opc == '4':
             fuerza, salir = modificarCampo(salir, 2, 10, "la fuerza")
             if fuerza is not None:
                 pj.fuerza = fuerza
+        # Modificacion de la inteligencia
         elif opc == '5':
             intel, salir = modificarCampo(salir, 3, 10, "la inteligencia")
             if intel is not None:
                 pj.inteligencia = intel
+        # Modificacion de la vida
         elif opc == '6':
             vida, salir = modificarCampo(salir, 4, 10, "la vida")
             if vida is not None:
                 pj.vida = vida
+        # Modificacion de la destreza
         elif opc == '7':
             destreza, salir = modificarCampo(salir, 5, 10, "la destreza")
             if destreza is not None:
                 pj.destreza = destreza
+        # Salir
         elif opc == '0':
-            saliendo()
             salir = True
         else:
             errorEntrada()
 
+
+
     if pj is not None:
         ConexionBBDD.bajaBBDD(nombre)
         ConexionBBDD.altaBBDD(pj)
+    saliendo()
 
 
 def modificarCampo(salir, campo, lim, nombreCampo):
@@ -315,6 +329,7 @@ def modificarCampo(salir, campo, lim, nombreCampo):
             if aux == '0':
                 opcSalir = '0'
             else:
+                VerificationExceptions.esNum(aux)
                 VerificationExceptions.esRango(aux, lim)
                 nValor = aux
                 campoCorrecto()
@@ -326,10 +341,10 @@ def modificarCampo(salir, campo, lim, nombreCampo):
         while not salir and op is None:
             op = confirModificar(nombreCampo)
             if op == "s":
-                modificacionCorrecta()
+                modificacionSi()
             elif op == "n":
                 nValor = None
-                salirSinGuardar()
+                modificacionNo()
             else:
                 errorEntrada()
     elif fallos == 5:
