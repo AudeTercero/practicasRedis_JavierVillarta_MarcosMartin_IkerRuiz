@@ -49,9 +49,9 @@ def menu():
                 mostrarPorColor()
         elif opc == "8":
             if not ConexionBBDD.hayPersonajes():
-                borrarTodos()
+                VistaGeneral.noHayPersonajes()
             else:
-                mostrarPorColor()
+                borrarTodos()
         elif opc == "0":
             saliendo()
             finMenuAlumnos = True
