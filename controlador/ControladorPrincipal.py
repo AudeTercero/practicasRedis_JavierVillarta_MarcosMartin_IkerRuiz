@@ -107,7 +107,7 @@ def alta():
         pj = Personaje(nombre, cabeza, cuerpo, piernas, color, fuerza, inteligencia, vida, destreza)
         ConexionBBDD.altaBBDD(pj)
         VistaGeneral.bordeFinalAlta()
-        VistaGeneral.mostrarPj(pj)
+        VistaGeneral.mostrarPj2(pj)
     elif (opcSalir == '0'):
         saliendo()
     else:

@@ -396,11 +396,60 @@ def mostrarPj(pj):
     print("\t║   ╠═════════════════╩══════════════════════╝")
     print(Style.RESET_ALL, end="")
     print("\t║ ╔═╝")
-    '''x = PrettyTable()
-    x.field_names = ["Nombre", "Color", "Fuerza", "Inteligencia", "Vida", "Destreza", "Puntos de Combate"]
-    x.add_row([pj.nombre, colorPj(int(pj.color)), pj.fuerza, pj.inteligencia, pj.vida, pj.destreza, pj.cp])
-    gris(str(x))'''
 
+
+def mostrarPj2(pj):
+    print(Style.BRIGHT, end="")
+
+    cabeza = int(pj.cabeza) - 1
+    cuerpo = int(pj.cuerpo) - 1
+    piernas = int(pj.piernas) - 1
+
+    print("\n\t╔═════════════════╦══════════════════════╗")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getCabezas()[cabeza][0], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    mostrarNombre(pj.nombre, pj.color)
+    print("║")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getCabezas()[cabeza][1], end="")
+    print(Fore.RESET, end="")
+    print("   ╠══════════════════════╣")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][0], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.fuerza), "FUERZA  ")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][1], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.inteligencia), "INTELEC.")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getCuerpos()[cuerpo][2], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.vida), "VIDA    ")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getPiernas()[piernas][0], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.destreza), "DESTR.  ")
+    print("\t║  ", end="")
+    colorPj(pj.color)
+    print(getPiernas()[piernas][1], end="")
+    print(Fore.RESET, end="")
+    print("   ║", end="")
+    barraProgreso(int(pj.cp), "CP      ")
+    print("\t╚═════════════════╩══════════════════════╝")
+    print(Style.RESET_ALL, end="")
 
 def barraProgreso(puntos, nombre):
     print(" [", end="")
