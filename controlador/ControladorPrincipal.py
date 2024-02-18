@@ -49,7 +49,7 @@ def menu():
                 mostrarPorColor()
         elif opc == "8":
             if not ConexionBBDD.hayPersonajes():
-
+                borrarTodos()
             else:
                 mostrarPorColor()
         elif opc == "0":

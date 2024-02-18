@@ -48,7 +48,7 @@ def mostrarCabezas():
 def mostrarCuerpos(cabeza):
     """
     Esta funcion muestra todos los cuerpos disponibles junto con la cabeza
-    :param cabeza:
+    :param cabeza: Cabeza seleccionada previamente
     :return:
     """
     piernasMolde = [
@@ -67,12 +67,14 @@ def mostrarCuerpos(cabeza):
 
     ################################# CUERPOS ######################################
     bordeIzq()
-    verdeSinSalto(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + "3 " + getCuerpos()[3][0]
-                      + "4 " + getCuerpos()[4][0] + "5 "))
+    verdeSinSalto(
+        str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + "3 " + getCuerpos()[3][0]
+            + "4 " + getCuerpos()[4][0] + "5 "))
     print("║")
     bordeIzq()
-    verdeSinSalto(str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
-                      + "  " + getCuerpos()[4][1]))
+    verdeSinSalto(
+        str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
+            + "  " + getCuerpos()[4][1]))
     bordeDer()
     bordeIzq()
     verdeSinSalto(str(getCuerpos()[0][2] + "  " + getCuerpos()[1][2] + "  " + getCuerpos()[2][2] + "  "
@@ -92,6 +94,12 @@ def mostrarCuerpos(cabeza):
 
 
 def mostrarPiernas(cabeza, cuerpo):
+    """
+    Esta funcion muestra todas las piernas disponibles junto con la cabeza y el cuerpo
+    :param cabeza: Cabeza seleccionada previamente
+    :param cuerpo: Cuerpo seleccionado previamente
+    :return:
+    """
     bordePersonajesTop()
     bordeIzq()
     azulSinSalto(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
@@ -125,100 +133,110 @@ def mostrarPiernas(cabeza, cuerpo):
     bordePersonajesBottom()
 
 
-def mostrarPersonaje(cabeza, cuerpo, piernas):
-    print(str(getCabezas()[cabeza][0]))
-    print(str(getCabezas()[cabeza][1]))
-    print(str(getCuerpos()[cuerpo][0]))
-    print(str(getCuerpos()[cuerpo][1]))
-    print(str(getCuerpos()[cuerpo][2]))
-    print(str(getPiernas()[piernas][0]))
-    print(str(getPiernas()[piernas][1]))
-
-
-def menuVisual(titulo, elementos):
-    print("\n╔══════════════════════╗")
-    print(f"║ {titulo} ║")
-    print("╠╦═════════════════════╣")
-    cont = 1
-    for elemento in elementos:
-        print(f"║╠ {cont}. {elemento}", end="")
-        for _ in range(17 - len(elemento)):
-            print(" ", end="")
-        print("║")
-        cont += 1
-    print("║╠ 0. Salir            ║")
-    print("╚╬═════════════════════╝")
-    opc = input(" ╚═══╣Opcion: ")
-    return opc
-
-
 def header(titulo):
+    """
+    Muestra la cabecera de los apartados
+    :param titulo: El titulo de la cabecera
+    :return:
+    """
     print("\n\t╔═══════════════════╦══════════╗")
     print(f"\t║  {titulo}   ║ 0. Salir ║")
     print("\t╠═╦═════════════════╩══════════╝")
 
 
 def bordeIzq():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("\t║ ", end="")
 
 
 def bordeIzqDoble():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("\t║ ╠ ", end="")
 
 
 def bordeDer():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("  ║")
 
 
 def bordeFinalAlta():
+    """
+    Se muestra tras finalizar un alta
+    :return:
+    """
     print("\t╚═╩══╣ ", end="")
     azulSinSalto("Alta realizada con exito")
     print()
 
 
 def bordeFinalBaja():
+    """
+    Se muestra tras finalizar una baja
+    :return:
+    """
     print("\t╚═╩══╣ ", end="")
     azulSinSalto("Baja realizada con exito")
     print()
 
 
 def bordeFinalConsulta():
+    """
+    Se muestra tras finalizar una consulta
+    :return:
+    """
     print("\t╠═╬══╣ ", end="")
     azulSinSalto("Personaje encontrado")
     print()
 
 
 def bordePersonajesTop():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("\t║ ╚═════════════════════════════════════════════════════════════════════╗")
 
 
 def bordePersonajesBottom():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("\t║ ╔═════════════════════════════════════════════════════════════════════╝")
 
 
 def bordeFinSimple():
+    """
+    Funcion que facilita la impresion grafica de la aplicacion
+    :return:
+    """
     print("\t╚═╝")
-
-
-def menu():
-    opcion = input("\n\n\t[==== MENU PERSONAJES ====>\n"
-                   "\t[1. Alta\n"
-                   "\t[2. Baja\n"
-                   "\t[3. Modificar\n"
-                   "\t[4. Consultar\n"
-                   "\t[5. Mostrar Todos\n"
-                   "\t[0. Salir\n"
-                   "\t[===== Opcion: ")
-    return opcion
 
 
 # INICIO PRINTS/INPUTS ALTAS
 def altaNombre():
+    """
+    Recibe, muestra y devuelve el parametro nombre
+    :return: nombre
+    """
     nombre = input("\t║ ╠ Nombre: ").lower()
     return nombre
 
 
 def altaApariencia():
+    """
+    Maneja el alta de los parametros para la creacion del personaje
+    :return: parametros del personaje
+    """
     mostrarCabezas()
     cabeza = input("\t║ ╠═══╣ Escoge cabeza: ")
     esNum(cabeza)
@@ -239,6 +257,10 @@ def altaApariencia():
 
 
 def altaColor():
+    """
+    Maneja la eleccion del color
+    :return: color seleccionado
+    """
     print("\t║ ╠════════════════════════════════╗")
     print("\t║ ║ ", end="")
     rojoSinSalto("1. Rojo  ")
@@ -255,29 +277,49 @@ def altaColor():
 
 
 def mensajePuntos():
+    """
+    Mensaje que informa al usuario
+    :return:
+    """
     print("\t║ ║\n\t║ ║ A continuacion, introduce la puntuacion del 1 al 10")
     print("\t║ ║ de los siguientes atributos\n\t║ ║")
 
 
 def altaFuerza():
+    """
+    Recibe, muestra y devuelve el parametro fuerza
+    :return: fuerza
+    """
     bordeIzqDoble()
     opc = input('Fuerza: ')
     return opc
 
 
 def altaInteligencia():
+    """
+    Recibe, muestra y devuelve el parametro inteligencia
+    :return: inteligencia
+    """
     bordeIzqDoble()
     opc = input('Inteligencia: ')
     return opc
 
 
 def altaVida():
+    """
+    Recibe, muestra y devuelve el parametro vida
+    :return: vida
+    """
     bordeIzqDoble()
     opc = input('Vida: ')
     return opc
 
 
 def altaDestreza():
+    """
+    Recibe, muestra y devuelve el parametro destreza
+    :return: destreza
+    """
     bordeIzqDoble()
     opc = input('Destreza: ')
     return opc
@@ -286,63 +328,93 @@ def altaDestreza():
 # INICIO PRINTS/INPUTS BAJA
 
 def baja():
+    """
+    Pide el personaje que se quiere dar de baja
+    :return: personaje seleccionado
+    """
     bordeIzqDoble()
     opc = input('Introduce el nombre del personaje que quieras borrar: ').lower()
     return opc
 
 
 def confirBaja():
+    """
+    Pide confirmacion para la baja
+    :return: resultado
+    """
     bordeIzqDoble()
     opc = input("Seguro que quieres dar de baja al personaje?[S/N]: ").lower()
     return opc
 
 
+def confirBajaRojo():
+    """
+    Pide confirmacion para borrar todos los personajes
+    :return:
+    """
+    bordeIzqDoble()
+    rojoSinSalto("Seguro que quieres dar de baja a todos los personajes [S/N]: ")
+    opc = input().lower()
+    return opc
+
+
 # INICIO PRINTS/INPUTS MODIFICAR
 def nombreModificar():
+    """
+    Permite la busqueda del personaje a modificar
+    :return: resultado
+    """
     bordeIzqDoble()
     opc = input('Introduce el nombre del personaje que quieras modificar: ').lower()
     return opc
 
 
-def menuModificar():
-    opc = input("\n\t[====== MODIFICACION PERSONAJE ======\n"
-                "\t[1.Nombre\n"
-                "\t[2.Apariencia\n"
-                "\t[3.Color\n"
-                "\t[4.Fuerza\n"
-                "\t[5.Inteligencia\n"
-                "\t[6.Vida\n"
-                "\t[7.Destreza\n"
-                "\t[0.Salir\n"
-                "\t[Opcion: ")
-    return opc
-
-
 def confirModificar(campo):
+    """
+    Pide la confirmacion para modificar
+    :param campo: El campo que se modifica
+    :return: resultado
+    """
     bordeIzqDoble()
     opc = input(f"Seguro que quieres modificar {campo} del curso?[S/N]: ").lower()
     return opc
 
 
 def modificacionSi():
+    """
+    Mensaje de campo modificado
+    :return:
+    """
     print("\t║ ║\t", end="")
     azulSinSalto("\tCampo Modificado")
     print()
 
 
 def modificacionNo():
+    """
+    Mensaje de salir sin modificar
+    :return:
+    """
     print("\t║ ║\tVolviendo sin Modificar...")
-
 
 
 # INICIO PRINTS/INPUTS BUSCAR
 def buscar():
+    """
+    Pide el nombre del personaje a buscar
+    :return:
+    """
     bordeIzqDoble()
     opc = input('Introduce el nombre del personaje que quieras buscar: ').lower()
     return opc
 
 
 def mostrarPj(pj):
+    """
+    Muestra el personaje de forma atractiva para el usuario para la consulta
+    :param pj: El personaje a mostrar
+    :return:
+    """
     print(Style.BRIGHT, end="")
 
     cabeza = int(pj.cabeza) - 1
@@ -399,6 +471,11 @@ def mostrarPj(pj):
 
 
 def mostrarPj2(pj):
+    """
+    Muestra el personaje de forma atractiva para el usuario tras el alta
+    :param pj: El personaje
+    :return:
+    """
     print(Style.BRIGHT, end="")
 
     cabeza = int(pj.cabeza) - 1
@@ -451,7 +528,15 @@ def mostrarPj2(pj):
     print("\t╚═════════════════╩══════════════════════╝")
     print(Style.RESET_ALL, end="")
 
+
 def barraProgreso(puntos, nombre):
+    """
+    Funcion usada al morstrar un personaje
+    Muestra una barra de progreso de un valor recibido
+    :param puntos: la cantidad de puntos
+    :param nombre: el nombre del atributo
+    :return:
+    """
     print(" [", end="")
     for i in range(puntos):
         print("■", end="")
@@ -461,6 +546,14 @@ def barraProgreso(puntos, nombre):
 
 
 def mostrarNombre(nombre, color):
+    """
+    Muestra un nombre manejando los espacios a su alrededor
+    en funciond de la longitud de caracteres
+    Se usa en mostrarPj()
+    :param nombre: nombre
+    :param color: color del nombre
+    :return:
+    """
     colorPj(color)
     disIzq = math.floor((22 - len(nombre)) / 2)
     disDer = math.ceil((22 - len(nombre)) / 2)
@@ -475,6 +568,11 @@ def mostrarNombre(nombre, color):
 
 
 def mostrarTodos(personajes):
+    """
+    Muestra todos los personajes que la funcion de mostrarPj()
+    :param personajes: lista con los personajes
+    :return:
+    """
     print("\n")
     print(Style.BRIGHT, end="")
     cont = 0
@@ -540,37 +638,70 @@ def mostrarTodos(personajes):
 
 
 def noHayPersonajes():
+    """
+    Muestra un cartel informando de que no hay personajes registrados en la BD
+    :return:
+    """
     amarillo("\n\t\t╔═════════════════════════════════╗")
     amarillo("\t\t║ No hay personajes guardados aun ║")
     amarillo("\t\t╚═════════════════════════════════╝")
 
 
 def noHayColor():
+    """
+    Muestra un aviso de que no hay ningun personaje con ese color
+    :return:
+    """
     amarillo("\t║ ║ No existe ningun personaje con ese color.")
 
 
 def saliendo():
+    """
+    Muestra un mensaje de salir
+    :return:
+    """
     print("\t╚═╣Saliendo...")
 
 
 def salirSinGuardar():
+    """
+    Muestra un mensaje de salir sin guardar
+    :return:
+    """
     print("\t╚═╣Saliendo sin guardar...")
 
 
 def errorEntrada():
+    """
+    Muestra un mensaje de entrada no valida
+    :return:
+    """
     rojo("    ╚═╣ Entrada no valida")
 
 
 def maxErrores():
+    """
+    Muestra un mensaje del maximo de errores
+    :return:
+    """
     amarillo("\t║ ║ Se han superado el maximo de 5 errores.")
     saliendo()
 
 
 def campoCorrecto():
+    """
+    Muestra un mensaje de campo correcto
+    :return:
+    """
     verdeOK("\tEntrada Valida")
 
 
 def colorPj(numString):
+    """
+    Maneja el control de los colores
+    Usado en la funcion mostrarPj()
+    :return:
+    """
     num = int(numString)
     if num == 1:
         print(Fore.RED, end="")
