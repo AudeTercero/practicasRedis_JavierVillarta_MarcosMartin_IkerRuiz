@@ -13,7 +13,8 @@ def menu():
     """
     finMenuAlumnos = False
     while not finMenuAlumnos:
-        opc = menuVisual("MENU PRINCIPAL", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos"])
+        opc = menuVisual("MENU PRINCIPAL", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos", "Mostrar por CP",
+                                            "Mostrar por color"])
         if opc == "1":
             alta()
         elif opc == "2":
@@ -36,6 +37,16 @@ def menu():
                 VistaGeneral.noHayPersonajes()
             else:
                 mostrarTodos()
+        elif opc == "6":
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                mostrarMayorMenorPj()
+        elif opc == "7":
+            if not ConexionBBDD.hayPersonajes():
+                VistaGeneral.noHayPersonajes()
+            else:
+                mostrarPorColor()
         elif opc == "0":
             saliendo()
             finMenuAlumnos = True
@@ -191,11 +202,10 @@ def modificar():
             rojo(str(err))
     salir = False
 
-
     while fallos < 5 and not salir and opcSalir != '0':
         bordeFinSimple()
 
-        #opc = VistaGeneral.menuModificar()
+        # opc = VistaGeneral.menuModificar()
         opc = menuVisual("MENU MODIFICAR", ["Nombre", "Apariencia", "Color", "Fuerza", "Inteligencia"
             , "Vida", "Destreza"])
 
@@ -302,8 +312,6 @@ def modificar():
         else:
             errorEntrada()
 
-
-
     if pj is not None:
         ConexionBBDD.bajaBBDD(nombre)
         ConexionBBDD.altaBBDD(pj)
@@ -385,6 +393,46 @@ def consultar():
             maxErrores()
         elif (opcSalir == '0'):
             saliendo()
+
+
+def mostrarPorColor():
+    """
+    Funcion que recoge de la conexion de la base de datos los personajes guardados, guarda en una lista auxiliar los del color elegido
+     y se los manda a la vista para mostrarlos
+    :return:
+    """
+    opc = None
+    aux = []
+    salir = False
+    while opc != '0' and salir == False:
+        try:
+            opc = VistaGeneral.altaColor()
+            VerificationExceptions.esRango(opc, 5)
+            personajes = ConexionBBDD.mostrarBBDD()
+            for personaje in personajes:
+                if personaje.color == opc:
+                    aux.append(personaje)
+            if len(aux) > 0:
+                VistaGeneral.mostrarTodos(aux)
+            else:
+                VistaGeneral.noHayColor()
+            salir = True
+        except VerificationExceptions.MisExceptions as err:
+            rojo(str(err))
+
+
+def mostrarMayorMenorPj():
+    """
+        Funcion que recoge de la conexion de la base de datos los personajes guardados, los ordena por los
+         puntos de combate (cp) y se los manda a la vista para mostrarlos
+        :return:
+        """
+    personajes = ConexionBBDD.mostrarBBDD()
+    for i in range(len(personajes)):
+        for j in range(len(personajes) - 1):
+            if personajes[j].cp < personajes[j + 1].cp:
+                personajes[j], personajes[j + 1] = personajes[j + 1], personajes[j]
+    VistaGeneral.mostrarTodos(personajes)
 
 
 def mostrarTodos():
