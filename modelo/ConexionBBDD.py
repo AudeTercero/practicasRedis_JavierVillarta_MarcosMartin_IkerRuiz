@@ -124,6 +124,11 @@ def mostrarBBDD():
 
 
 def existeNombreBBDD(nombre):
+    """
+    Funcion que comprueba si existe un personaje guardad con el nombre recibido por parametro
+    :param nombre: nombre del personaje
+    :return: Retorna true o false segun exista o no
+    """
     con = connectBBDD()
     if con.exists(nombre) == 0:
         return False
@@ -132,6 +137,10 @@ def existeNombreBBDD(nombre):
 
 
 def hayPersonajes():
+    """
+    Funcion que comprueba si hay personajes guardados en la base de datos
+    :return: Retorna true o false si hay o no
+    """
     con = connectBBDD()
     keys = con.keys('*')
     if len(keys) > 0:
@@ -141,6 +150,10 @@ def hayPersonajes():
 
 
 def borrarTodaBD():
+    """
+    Funcion que para borrar toda la base de datos
+    :return:
+    """
     con = connectBBDD()
     con.flushdb()
 

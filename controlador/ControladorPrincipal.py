@@ -14,7 +14,7 @@ def menu():
     finMenuAlumnos = False
     while not finMenuAlumnos:
         opc = menuVisual("MENU PRINCIPAL", ["Alta", "Baja", "Modificar", "Colsultar", "Mostrar Todos", "Mostrar por CP",
-                                            "Mostrar por color"])
+                                            "Mostrar por color", "Borrar todos los personajes"])
         if opc == "1":
             alta()
         elif opc == "2":
@@ -45,6 +45,11 @@ def menu():
         elif opc == "7":
             if not ConexionBBDD.hayPersonajes():
                 VistaGeneral.noHayPersonajes()
+            else:
+                mostrarPorColor()
+        elif opc == "8":
+            if not ConexionBBDD.hayPersonajes():
+
             else:
                 mostrarPorColor()
         elif opc == "0":
@@ -443,6 +448,23 @@ def mostrarTodos():
     """
     personajes = ConexionBBDD.mostrarBBDD()
     VistaGeneral.mostrarTodos(personajes)
+
+def borrarTodos():
+    """
+    Funcion que para borrar los datos de la base de datos
+    :return:
+    """
+    op = confirBajaRojo()
+    if op == "s":
+        ConexionBBDD.borrarTodaBD()
+        VistaGeneral.bordeFinalBaja()
+        salir = True
+    elif op == "n":
+        salir = True
+        salirSinGuardar()
+    else:
+        VistaGeneral.errorEntrada()
+
 
 
 def selectAlta(num):
