@@ -11,6 +11,15 @@ def rojo(msg):
     print(Style.RESET_ALL, end="")
 
 
+def rojoSinSalto(msg):
+    """
+    Funcion que colorea de rojo el mensaje que recibe y lo muestra
+    :param msg: El mensaje a colorear
+    """
+    print(Style.BRIGHT, end="")
+    print(Fore.LIGHTRED_EX + msg + Fore.RESET, end="")
+    print(Style.RESET_ALL, end="")
+
 
 def amarillo(msg):
     """
@@ -22,10 +31,21 @@ def amarillo(msg):
     print(Style.RESET_ALL, end="")
 
 
+def amarilloSinSalto(msg):
+    """
+    Funcion que colorea de amarillo el mensaje que recibe y lo muestra
+    sin salto de linea
+    :param msg: El mensaje a colorear
+    """
+    print(Style.BRIGHT, end="")
+    print(Fore.LIGHTYELLOW_EX + msg + Fore.RESET, end="")
+    print(Style.RESET_ALL, end="")
 
-def azul(msg):
+
+def azulSinSalto(msg):
     """
     Funcion que colorea de azul el mensaje que recibe y lo muestra
+    sin salto de linea
     :param msg: El mensaje a colorear
     """
     print(Style.BRIGHT, end="")
@@ -33,7 +53,7 @@ def azul(msg):
     print(Style.RESET_ALL, end="")
 
 
-def verde(msg):
+def verdeSinSalto(msg):
     """
     Funcion que colorea de verde el mensaje que recibe y lo muestra
     :param msg: El mensaje a colorear
@@ -60,9 +80,8 @@ def morado(msg):
     :param msg: El mensaje a colorear
     """
     print(Style.BRIGHT, end="")
-    print(Fore.MAGENTA + msg + Fore.RESET)
-    print(Style.RESET_ALL)
-
+    print(Fore.MAGENTA + msg + Fore.RESET, end="")
+    print(Style.RESET_ALL, end="")
 
 
 def gris(msg):
@@ -73,4 +92,3 @@ def gris(msg):
     print(Style.BRIGHT, end="")
     print(Fore.LIGHTBLACK_EX + msg + Fore.RESET)
     print(Style.RESET_ALL)
-

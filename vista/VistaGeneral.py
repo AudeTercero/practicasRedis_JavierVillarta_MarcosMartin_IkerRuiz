@@ -27,12 +27,12 @@ def mostrarCabezas():
     # Se llama a la funcion verde, la cual muestra el contenido recibido en color verde
     bordePersonajesTop()
     bordeIzq()
-    verde(str(getCabezas()[0][0] + "1 " + getCabezas()[1][0] + "2 " + getCabezas()[2][0]
-              + "3 " + getCabezas()[3][0] + "4 " + getCabezas()[4][0] + "5 "))
+    verdeSinSalto(str(getCabezas()[0][0] + "1 " + getCabezas()[1][0] + "2 " + getCabezas()[2][0]
+                      + "3 " + getCabezas()[3][0] + "4 " + getCabezas()[4][0] + "5 "))
     print("║")
     bordeIzq()
-    verde(str(getCabezas()[0][1] + "  " + getCabezas()[1][1] + "  " + getCabezas()[2][1]
-              + "  " + getCabezas()[3][1] + "  " + getCabezas()[4][1]))
+    verdeSinSalto(str(getCabezas()[0][1] + "  " + getCabezas()[1][1] + "  " + getCabezas()[2][1]
+                      + "  " + getCabezas()[3][1] + "  " + getCabezas()[4][1]))
     bordeDer()
 
     ########################### CUERPOS DE EJEMPLO #################################
@@ -57,26 +57,26 @@ def mostrarCuerpos(cabeza):
     ################################# CABEZAS ######################################
     bordePersonajesTop()
     bordeIzq()
-    azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
-             getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
+    azulSinSalto(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
+                     getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
     bordeDer()
     bordeIzq()
-    azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
-             getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
+    azulSinSalto(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
+                     getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
     bordeDer()
 
     ################################# CUERPOS ######################################
     bordeIzq()
-    verde(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + "3 " + getCuerpos()[3][0]
-              + "4 " + getCuerpos()[4][0] + "5 "))
+    verdeSinSalto(str(getCuerpos()[0][0] + " 1" + getCuerpos()[1][0] + " 2" + getCuerpos()[2][0] + "3 " + getCuerpos()[3][0]
+                      + "4 " + getCuerpos()[4][0] + "5 "))
     print("║")
     bordeIzq()
-    verde(str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
-              + "  " + getCuerpos()[4][1]))
+    verdeSinSalto(str(getCuerpos()[0][1] + "  " + getCuerpos()[1][1] + "  " + getCuerpos()[2][1] + "  " + getCuerpos()[3][1]
+                      + "  " + getCuerpos()[4][1]))
     bordeDer()
     bordeIzq()
-    verde(str(getCuerpos()[0][2] + "  " + getCuerpos()[1][2] + "  " + getCuerpos()[2][2] + "  "
-              + getCuerpos()[3][2] + "  " + getCuerpos()[4][2]))
+    verdeSinSalto(str(getCuerpos()[0][2] + "  " + getCuerpos()[1][2] + "  " + getCuerpos()[2][2] + "  "
+                      + getCuerpos()[3][2] + "  " + getCuerpos()[4][2]))
     bordeDer()
 
     ############################ PIERNAS DE EJEMPLO #################################
@@ -94,33 +94,33 @@ def mostrarCuerpos(cabeza):
 def mostrarPiernas(cabeza, cuerpo):
     bordePersonajesTop()
     bordeIzq()
-    azul(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
-             getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
+    azulSinSalto(str(getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0] + "  " +
+                     getCabezas()[cabeza][0] + "  " + getCabezas()[cabeza][0]))
     bordeDer()
     bordeIzq()
-    azul(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
-             getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
+    azulSinSalto(str(getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1] + "  " +
+                     getCabezas()[cabeza][1] + "  " + getCabezas()[cabeza][1]))
     bordeDer()
     bordeIzq()
-    azul(str(getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " +
-             getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0]))
+    azulSinSalto(str(getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0] + "  " +
+                     getCuerpos()[cuerpo][0] + "  " + getCuerpos()[cuerpo][0]))
     bordeDer()
     bordeIzq()
-    azul(str(getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " +
-             getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1]))
+    azulSinSalto(str(getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1] + "  " +
+                     getCuerpos()[cuerpo][1] + "  " + getCuerpos()[cuerpo][1]))
     bordeDer()
     bordeIzq()
-    azul(str(getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " +
-             getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2]))
+    azulSinSalto(str(getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2] + "  " +
+                     getCuerpos()[cuerpo][2] + "  " + getCuerpos()[cuerpo][2]))
     bordeDer()
 
     bordeIzq()
-    verde(str(getPiernas()[0][0] + "1 " + getPiernas()[1][0] + "2 " + getPiernas()[2][0] + "3 "
-              + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
+    verdeSinSalto(str(getPiernas()[0][0] + "1 " + getPiernas()[1][0] + "2 " + getPiernas()[2][0] + "3 "
+                      + getPiernas()[3][0] + "4 " + getPiernas()[4][0] + "5 "))
     print("║")
     bordeIzq()
-    verde(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
-              + getPiernas()[3][1] + "  " + getPiernas()[4][1]))
+    verdeSinSalto(str(getPiernas()[0][1] + "  " + getPiernas()[1][1] + "  " + getPiernas()[2][1] + "  "
+                      + getPiernas()[3][1] + "  " + getPiernas()[4][1]))
     bordeDer()
     bordePersonajesBottom()
 
@@ -172,19 +172,19 @@ def bordeDer():
 
 def bordeFinalAlta():
     print("\t╚═╩══╣ ", end="")
-    azul("Alta realizada con exito")
+    azulSinSalto("Alta realizada con exito")
     print()
 
 
 def bordeFinalBaja():
     print("\t╚═╩══╣ ", end="")
-    azul("Baja realizada con exito")
+    azulSinSalto("Baja realizada con exito")
     print()
 
 
 def bordeFinalConsulta():
     print("\t╠═╬══╣ ", end="")
-    azul("Personaje encontrado")
+    azulSinSalto("Personaje encontrado")
     print()
 
 
@@ -240,18 +240,17 @@ def altaApariencia():
 
 def altaColor():
     print("\t║ ╠════════════════════════════════╗")
-    print("\t║ ║ 1. Rojo  2. Amarillo  3. Verde ║")
-    print("\t║ ║ 4. Azul  5. Morado    6. Salir ║")
+    print("\t║ ║ ", end="")
+    rojoSinSalto("1. Rojo  ")
+    amarilloSinSalto("2. Amarillo  ")
+    verdeSinSalto("3. Verde ")
+    print("║")
+    print("\t║ ║ ", end="")
+    azulSinSalto("4. Azul  ")
+    morado("5. Morado    ")
+    print("0. Salir ║")
     print("\t║ ╠════════════════════════════════╝")
     opc = input("\t║ ╠ Color: ")
-    '''opc = input("\n\n\t[==== Escoge un color ====>\n"
-                "\t[1. Rojo\n"
-                "\t[2. Amarillo\n"
-                "\t[3. Verde\n"
-                "\t[4. Azul\n"
-                "\t[5. Morado\n"
-                "\t[0. Salir\n"
-                "\t[===== Opcion: ")'''
     return opc
 
 
@@ -327,7 +326,7 @@ def confirModificar(campo):
 
 def modificacionSi():
     print("\t║ ║\t", end="")
-    azul("\tCampo Modificado")
+    azulSinSalto("\tCampo Modificado")
     print()
 
 
@@ -495,6 +494,10 @@ def noHayPersonajes():
     amarillo("\n\t\t╔═════════════════════════════════╗")
     amarillo("\t\t║ No hay personajes guardados aun ║")
     amarillo("\t\t╚═════════════════════════════════╝")
+
+
+def noHayColor():
+    amarillo("\t║ ║ No existe ningun personaje con ese color.")
 
 
 def saliendo():
